@@ -14,6 +14,7 @@ classdef ELVISLogs
         plotlegend
         plotrange
         logaxis
+        xintercepts
         
     end
     
@@ -21,6 +22,7 @@ classdef ELVISLogs
         function obj = ELVISLogs(text)
            obj = obj.parseLogData(text);
            obj.plottitle = obj.type;
+           obj.xintercepts = [];
            obj.plotrange = [0, 1];
            obj.plotlegend = ["CH0", "CH1"];
         end
@@ -34,6 +36,18 @@ classdef ELVISLogs
             t0 = sigs(r(1), 1, 1);
             t1 = sigs(r(2), 1, 1);
             range = [t0, t1];
+        end
+        
+        function y = intercept(obj, xvalue)
+            sigs = obj.signals;
+            
+            [~,i] = min(abs(sigs(:, 1, 1) - xvalue));
+            if i > 1
+                x = sigs(i, 1, :);
+                y = sigs(i, 2, :);
+                plot(x, y, "*");
+                text(x, y, sprintf("(%.2f, %.2f)", x, y));
+            end
         end
         
         function plot(obj)
@@ -54,6 +68,14 @@ classdef ELVISLogs
             xlabel(obj.xaxis);
             ylabel(obj.yaxis);
             title(obj.plottitle);
+            
+            n = length(obj.xintercepts);
+            if n > 0
+                for i = 1:n
+                    obj.intercept(obj.xintercepts(i));
+                end
+            end
+            
             if ns > 1
                 legend(obj.plotlegend);
             end
@@ -132,7 +154,7 @@ classdef ELVISLogs
             if isempty(desc)
                 desc = regexp(filename, '(?<name>[^\(/]+).txt', 'names');
             else 
-                [pfuncs] = regexp(desc(1).pfuncs, '(?<cmd>[lgri])\[(?<params>[^\]]+)\]', 'names');
+                [pfuncs] = regexp(desc(1).pfuncs, '(?<cmd>[lgrxi])\[(?<params>[^\]]+)\]', 'names');
             
                 for pi = 1:length(pfuncs)
                     cmd = pfuncs(pi).cmd;
@@ -148,6 +170,8 @@ classdef ELVISLogs
                             if range(2) > 1, range(2) = 1;end
                             if range(1) > range(2), range(1) = range(2);end
                             obj.plotrange = range;
+                        case "x"
+                            obj.xintercepts = str2double(regexp(params, '[, \t]+', 'split'));
                                 
                     end
                 end
