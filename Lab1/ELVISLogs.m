@@ -27,26 +27,30 @@ classdef ELVISLogs
         
         
         function range = getRange(obj)
-            [n, ~, ~] = size(obj.signals);
+            sigs = obj.signals;
+            [n, ~, ~] = size(sigs);
             r = obj.plotrange;
             r = round((n - 1) * r ) + 1;
-            range = r(1):r(2);
+            t0 = sigs(r(1), 1, 1);
+            t1 = sigs(r(2), 1, 1);
+            range = [t0, t1];
         end
         
         function plot(obj)
             [~, ~, ns] = size(obj.signals);
-            range = obj.getRange();
+     
             for i = 1:ns
                 if strcmp(obj.logaxis, "x")
-                    semilogx(obj.signals(range, 1, i), obj.signals(range, 2, i));
+                    semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i));
                 elseif strcmp(obj.logaxis, "y")
-                    semilogy(obj.signals(range, 1, i), obj.signals(range, 2, i));
+                    semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i));
                 else
-                    plot(obj.signals(range, 1, i), obj.signals(range, 2, i));
+                    plot(obj.signals(:, 1, i), obj.signals(:, 2, i));
                 end
                 
                 hold on
             end
+            xlim(obj.getRange());
             xlabel(obj.xaxis);
             ylabel(obj.yaxis);
             title(obj.plottitle);
