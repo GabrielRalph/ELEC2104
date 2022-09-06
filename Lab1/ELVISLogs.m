@@ -40,13 +40,15 @@ classdef ELVISLogs
         
         function y = intercept(obj, xvalue)
             sigs = obj.signals;
-            
-            [~,i] = min(abs(sigs(:, 1, 1) - xvalue));
-            if i > 1
-                x = sigs(i, 1, :);
-                y = sigs(i, 2, :);
-                plot(x, y, "*");
-                text(x, y, sprintf("(%.2f, %.2f)", x, y));
+            [~, ~, ns] = size(sigs);
+            for is = 1:ns
+                [~,i] = min(abs(sigs(:, 1, is) - xvalue));
+                if i > 1
+                    x = sigs(i, 1, is);
+                    y = sigs(i, 2, is);
+                    plot(x, y, "*");
+                    text(x, y, sprintf("(%.2f, %.2f)", x, y));
+                end
             end
         end
         
