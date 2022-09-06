@@ -12,26 +12,37 @@ classdef ELVISLogs
         
         plottitle
         plotlegend
+        plotrange
         logaxis
+        
     end
     
     methods
         function obj = ELVISLogs(text)
            obj = obj.parseLogData(text);
            obj.plottitle = obj.type;
+           obj.plotrange = [0, 1];
            obj.plotlegend = ["CH0", "CH1"];
         end
         
         
+        function range = getRange(obj)
+            [n, ~, ~] = size(obj.signals);
+            r = obj.plotrange;
+            r = round((n - 1) * r ) + 1;
+            range = r(1):r(2);
+        end
+        
         function plot(obj)
             [~, ~, ns] = size(obj.signals);
+            range = obj.getRange();
             for i = 1:ns
                 if strcmp(obj.logaxis, "x")
-                    semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    semilogx(obj.signals(range, 1, i), obj.signals(range, 2, i));
                 elseif strcmp(obj.logaxis, "y")
-                    semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    semilogy(obj.signals(range, 1, i), obj.signals(range, 2, i));
                 else
-                    plot(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    plot(obj.signals(range, 1, i), obj.signals(range, 2, i));
                 end
                 
                 hold on
@@ -117,7 +128,7 @@ classdef ELVISLogs
             if isempty(desc)
                 desc = regexp(filename, '(?<name>[^\(/]+).txt', 'names');
             else 
-                [pfuncs] = regexp(desc(1).pfuncs, '(?<cmd>[lgi])\[(?<params>[^\]]+)\]', 'names');
+                [pfuncs] = regexp(desc(1).pfuncs, '(?<cmd>[lgri])\[(?<params>[^\]]+)\]', 'names');
             
                 for pi = 1:length(pfuncs)
                     cmd = pfuncs(pi).cmd;
@@ -127,7 +138,13 @@ classdef ELVISLogs
                             obj.plotlegend = regexp(params, '[, \t]+', 'split');
                         case "l"
                             obj.logaxis = params;
-        
+                        case "r"
+                            range = str2double(regexp(params, '[, \t]+', 'split'));
+                            if range(1) < 0, range(1) = 0;end
+                            if range(2) > 1, range(2) = 1;end
+                            if range(1) > range(2), range(1) = range(2);end
+                            obj.plotrange = range;
+                                
                     end
                 end
             end 

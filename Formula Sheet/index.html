@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      MathJax = {
+        loader: {load: ['[tex]/color']},
+        tex: {
+          packages: {'[+]': ['color']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          macros: {
+            trans: `\\underset{heat}{\\overset{cool}{\\rightleftharpoons}}`,
+            mat: ["\\left[ \\begin{matrix} #1 \\end{matrix} \\right]", 1],
+            eq: ["\\begin{equation} #1 \\label{#2} \\end{equation}", 2],
+            dpar: ["\\cfrac{\\partial #1}{\\partial #2}", 2],
+            hl: ["{\\color{WildStrawberry} #1}", 1],
+            red: ["{\\color{BrickRed} {#1}_1}", 1],
+            blue: ["{\\color{RoyalBlue} {#1}_2}", 1],
+          },
+          tags: "ams",
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>$k_B$</td> <td> eV/K</td> <td>Boltzmann’s constant</td> <td>$k_B = 8.62 \times 10^{−5}$</td>
+      </tr>
+      <tr>
+        <td>$\text{eV}$</td> <td></td> <td>The energy necessary to move one electron across a potential difference of 1 V</td> <td>$-1\text{eV} = 1.6 \times 10^{-19}\text{J}$</td>
+      </tr>
+      <tr>
+        <td>$E_g$</td> <td>$\text{eV}$</td><td>Energy band gap between valence and conduction band. $E_g \approx 9\text{eV}$ for insulators and $\approx 1\text{eV}$ for semiconductors $\approx 1.1\text{eV}$ for silicon.</td>
+      </tr>
+      <tr>
+        <td>$n_i$</td> <td>$\text{cm}^{-3}$</td> <td>Intrinsic carrier density.</td>
+      </tr>
+      <tr>
+        <td>$n, \ p$</td> <td>$\text{cm}^{-3}$</td> <td>Electron, hole densities respectively.</td>
+      </tr>
+      <tr>
+        <td>$E_g$</td> <td>$\text{eV}$</td><td>Energy band gap between valence and conduction band.</td>
+      </tr>
+      <tr>
+        <td>$\mu_n, \ \mu_p$</td> <td>$\text{cm}^2\text{/s/V}$</td>
+      </tr>
+    </table>
+    <div>
+      $$\text{for intrinsic silicone} \quad p = n_i = n$$
+    </div>
+    <div>
+      $$pn = n_i^2 \quad \text{at thermal equilibrium}$$
+    </div>
+    <div>
+      $$n_i^2 = BT^3e^{-\cfrac{E_g}{k_BT}}$$
+    </div>
+    <div>$$n - p = N_D - N_A$$</div>
+  </body>
+</html>
