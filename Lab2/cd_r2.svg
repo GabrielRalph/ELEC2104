@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="547.3px" height="255.2px" viewBox="0 0 547.3 255.2" style="enable-background:new 0 0 547.3 255.2;" xml:space="preserve"
+	>
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+	.st2{fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#F96616;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st5{fill:#F96616;}
+	.st6{fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st7{fill:#2189F9;}
+	.st8{opacity:0.5;}
+	.st9{opacity:0.5;fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st10{font-family:'Times-Bold';}
+	.st11{font-size:20.5946px;}
+	.st12{font-family:'Times-BoldItalic';}
+</style>
+<g>
+	<g>
+		<g>
+			<g>
+				<line class="st2" x1="457.8" y1="233.6" x2="457.8" y2="46.6"/>
+				<g>
+					<path d="M462.1,233.6c0,2.4-1.9,4.3-4.3,4.3s-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3S462.1,231.3,462.1,233.6z"/>
+				</g>
+				<g>
+					<path d="M462.1,46.6c0-2.4-1.9-4.3-4.3-4.3s-4.3,1.9-4.3,4.3c0,2.4,1.9,4.3,4.3,4.3S462.1,48.9,462.1,46.6z"/>
+				</g>
+			</g>
+		</g>
+		<polyline class="st1" points="456.2,126 445.1,153.2 470.6,153.2 459.5,126 		"/>
+		<rect x="445.1" y="124.6" class="st1" width="25.5" height="2.8"/>
+	</g>
+	<text transform="matrix(1 0 0 1 476.9277 144.5356)" class="st10 st11">1N914</text>
+	<g>
+		<g>
+			<g>
+				<g>
+					<line class="st0" x1="181.6" y1="46.8" x2="270.9" y2="46.8"/>
+					<g>
+						<path d="M270.9,51.1c2.4,0,4.3-1.9,4.3-4.3s-1.9-4.3-4.3-4.3s-4.3,1.9-4.3,4.3S268.5,51.1,270.9,51.1z"/>
+					</g>
+				</g>
+			</g>
+			<g>
+				<g>
+					<line class="st0" x1="83.8" y1="46.8" x2="173.1" y2="46.8"/>
+					<g>
+						<circle cx="83.8" cy="46.8" r="4.3"/>
+					</g>
+				</g>
+			</g>
+			
+				<rect x="156.1" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 126.2692 219.8936)" class="st1" width="34" height="2.8"/>
+			
+				<rect x="164.6" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 134.7731 228.3975)" class="st1" width="34" height="2.8"/>
+		</g>
+		<line class="st0" x1="191.8" y1="25.6" x2="183.3" y2="25.6"/>
+		<line class="st0" x1="187.6" y1="29.8" x2="187.6" y2="21.3"/>
+	</g>
+	<line class="st0" x1="457.9" y1="233.9" x2="270.9" y2="233.9"/>
+	<line class="st0" x1="457.9" y1="46.8" x2="270.9" y2="46.8"/>
+	<line class="st0" x1="270.9" y1="233.9" x2="83.8" y2="233.9"/>
+	<g>
+		<g>
+			<g>
+				<line class="st2" x1="83.8" y1="103.2" x2="83.8" y2="46.8"/>
+				<g>
+					<path d="M88.1,46.8c0-2.4-1.9-4.3-4.3-4.3s-4.3,1.9-4.3,4.3s1.9,4.3,4.3,4.3S88.1,49.2,88.1,46.8z"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<line class="st2" x1="83.8" y1="233.9" x2="83.8" y2="165.6"/>
+				<g>
+					<path d="M88.1,233.9c0,2.4-1.9,4.3-4.3,4.3s-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3S88.1,231.5,88.1,233.9z"/>
+				</g>
+			</g>
+		</g>
+		<circle class="st3" cx="83.8" cy="134.4" r="31.2"/>
+		<path class="st3" d="M112.4,121.9c-6.9,0-12,25-18.9,25c-6.9,0-12-25-18.9-25s-12,25-18.9,25"/>
+	</g>
+	<text transform="matrix(1 0 0 1 187.569 76.0021)" class="st12 st11">10μF</text>
+	<text transform="matrix(1 0 0 1 287.1481 143.5338)" class="st12 st11">10kΩ</text>
+	<text transform="matrix(1 0 0 1 125.7644 127.8255)"><tspan x="0" y="0" class="st12 st11">10Vpp</tspan><tspan x="0" y="24.7" class="st12 st11">100Hz</tspan></text>
+	<g>
+		<g>
+			<polyline class="st2" points="270.9,233.9 270.9,168.1 279.4,164.6 262.4,157.7 279.4,150.7 262.4,143.8 279.4,136.9 262.4,130 
+				279.4,123 262.4,116.1 270.9,112.6 270.9,46.8 			"/>
+			<g>
+				<path d="M275.1,233.9c0,2.4-1.9,4.3-4.3,4.3c-2.4,0-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3C273.2,229.6,275.1,231.5,275.1,233.9
+					z"/>
+			</g>
+			<g>
+				<path d="M275.1,46.8c0-2.4-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3s1.9,4.3,4.3,4.3C273.2,51.1,275.1,49.2,275.1,46.8z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st4" x1="513.3" y1="233.6" x2="457.8" y2="233.6"/>
+			<g>
+				<rect x="507.7" y="228" class="st5" width="11.2" height="11.2"/>
+			</g>
+			<g>
+				<path class="st5" d="M457.8,229.4c-2.4,0-4.3,1.9-4.3,4.3c0,2.4,1.9,4.3,4.3,4.3c2.4,0,4.3-1.9,4.3-4.3
+					C462.1,231.3,460.2,229.4,457.8,229.4z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st6" x1="28.4" y1="233.9" x2="83.8" y2="233.9"/>
+			<g>
+				<rect x="22.7" y="228.3" class="st7" width="11.2" height="11.2"/>
+			</g>
+			<g>
+				<path class="st7" d="M83.8,238.2c2.4,0,4.3-1.9,4.3-4.3c0-2.4-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3
+					C79.6,236.3,81.5,238.2,83.8,238.2z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<line class="st6" x1="28.4" y1="46.8" x2="83.8" y2="46.8"/>
+				<g>
+					<rect x="22.7" y="41.2" class="st7" width="11.2" height="11.2"/>
+				</g>
+				<g>
+					<path class="st7" d="M83.8,51.1c2.4,0,4.3-1.9,4.3-4.3s-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3S81.5,51.1,83.8,51.1z"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			<line class="st6" x1="14.3" y1="37" x2="22.8" y2="37"/>
+			<line class="st6" x1="18.6" y1="41.3" x2="18.6" y2="32.8"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<line class="st4" x1="513.3" y1="46.6" x2="457.8" y2="46.6"/>
+				<g>
+					<rect x="507.7" y="40.9" class="st5" width="11.2" height="11.2"/>
+				</g>
+				<g>
+					<path class="st5" d="M457.8,42.3c-2.4,0-4.3,1.9-4.3,4.3c0,2.4,1.9,4.3,4.3,4.3c2.4,0,4.3-1.9,4.3-4.3
+						C462.1,44.2,460.2,42.3,457.8,42.3z"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			<line class="st4" x1="527.4" y1="36.8" x2="518.8" y2="36.8"/>
+			<line class="st4" x1="523.1" y1="41" x2="523.1" y2="32.5"/>
+		</g>
+	</g>
+</g>
+</svg>
