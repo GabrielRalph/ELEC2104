@@ -5,9 +5,9 @@
 	>
 <style type="text/css">
 	.st0{fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
-	.st2{fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
-	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;}
 	.st4{fill:none;stroke:#F96616;stroke-width:2.8346;stroke-miterlimit:10;}
 	.st5{fill:#F96616;}
 	.st6{fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;}
@@ -15,14 +15,18 @@
 	.st8{opacity:0.5;}
 	.st9{opacity:0.5;fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
 	.st10{font-family:'Times-Bold';}
-	.st11{font-size:20.5946px;}
+	.st11{font-size:20.5945px;}
 	.st12{font-family:'Times-BoldItalic';}
+	.st13{fill:none;stroke:#CD41EF;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st14{fill:#CD41EF;}
+	.st15{fill:none;stroke:#0BD35C;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st16{fill:#0BD35C;}
 </style>
 <g>
 	<g>
 		<g>
 			<g>
-				<line class="st2" x1="457.8" y1="233.6" x2="457.8" y2="46.6"/>
+				<line class="st1" x1="457.8" y1="233.6" x2="457.8" y2="46.6"/>
 				<g>
 					<path d="M462.1,233.6c0,2.4-1.9,4.3-4.3,4.3s-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3S462.1,231.3,462.1,233.6z"/>
 				</g>
@@ -31,8 +35,8 @@
 				</g>
 			</g>
 		</g>
-		<polyline class="st1" points="456.2,126 445.1,153.2 470.6,153.2 459.5,126 		"/>
-		<rect x="445.1" y="124.6" class="st1" width="25.5" height="2.8"/>
+		<polyline class="st3" points="456.2,126 445.1,153.2 470.6,153.2 459.5,126 		"/>
+		<rect x="445.1" y="124.6" class="st3" width="25.5" height="2.8"/>
 	</g>
 	<text transform="matrix(1 0 0 1 476.9277 144.5356)" class="st10 st11">1N914</text>
 	<g>
@@ -54,9 +58,9 @@
 				</g>
 			</g>
 			
-				<rect x="156.1" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 126.2692 219.8936)" class="st1" width="34" height="2.8"/>
+				<rect x="156.1" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 126.2692 219.8936)" class="st3" width="34" height="2.8"/>
 			
-				<rect x="164.6" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 134.7731 228.3975)" class="st1" width="34" height="2.8"/>
+				<rect x="164.6" y="45.4" transform="matrix(6.123234e-17 -1 1 6.123234e-17 134.7731 228.3975)" class="st3" width="34" height="2.8"/>
 		</g>
 		<line class="st0" x1="191.8" y1="25.6" x2="183.3" y2="25.6"/>
 		<line class="st0" x1="187.6" y1="29.8" x2="187.6" y2="21.3"/>
@@ -67,7 +71,7 @@
 	<g>
 		<g>
 			<g>
-				<line class="st2" x1="83.8" y1="103.2" x2="83.8" y2="46.8"/>
+				<line class="st1" x1="83.8" y1="103.2" x2="83.8" y2="46.8"/>
 				<g>
 					<path d="M88.1,46.8c0-2.4-1.9-4.3-4.3-4.3s-4.3,1.9-4.3,4.3s1.9,4.3,4.3,4.3S88.1,49.2,88.1,46.8z"/>
 				</g>
@@ -75,21 +79,21 @@
 		</g>
 		<g>
 			<g>
-				<line class="st2" x1="83.8" y1="233.9" x2="83.8" y2="165.6"/>
+				<line class="st1" x1="83.8" y1="233.9" x2="83.8" y2="165.6"/>
 				<g>
 					<path d="M88.1,233.9c0,2.4-1.9,4.3-4.3,4.3s-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3S88.1,231.5,88.1,233.9z"/>
 				</g>
 			</g>
 		</g>
-		<circle class="st3" cx="83.8" cy="134.4" r="31.2"/>
-		<path class="st3" d="M112.4,121.9c-6.9,0-12,25-18.9,25c-6.9,0-12-25-18.9-25s-12,25-18.9,25"/>
+		<circle class="st2" cx="83.8" cy="134.4" r="31.2"/>
+		<path class="st2" d="M112.4,121.9c-6.9,0-12,25-18.9,25c-6.9,0-12-25-18.9-25s-12,25-18.9,25"/>
 	</g>
 	<text transform="matrix(1 0 0 1 187.569 76.0021)" class="st12 st11">10μF</text>
 	<text transform="matrix(1 0 0 1 287.1481 143.5338)" class="st12 st11">10kΩ</text>
 	<text transform="matrix(1 0 0 1 125.7644 127.8255)"><tspan x="0" y="0" class="st12 st11">10Vpp</tspan><tspan x="0" y="24.7" class="st12 st11">100Hz</tspan></text>
 	<g>
 		<g>
-			<polyline class="st2" points="270.9,233.9 270.9,168.1 279.4,164.6 262.4,157.7 279.4,150.7 262.4,143.8 279.4,136.9 262.4,130 
+			<polyline class="st1" points="270.9,233.9 270.9,168.1 279.4,164.6 262.4,157.7 279.4,150.7 262.4,143.8 279.4,136.9 262.4,130 
 				279.4,123 262.4,116.1 270.9,112.6 270.9,46.8 			"/>
 			<g>
 				<path d="M275.1,233.9c0,2.4-1.9,4.3-4.3,4.3c-2.4,0-4.3-1.9-4.3-4.3c0-2.4,1.9-4.3,4.3-4.3C273.2,229.6,275.1,231.5,275.1,233.9

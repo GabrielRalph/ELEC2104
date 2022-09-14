@@ -5,9 +5,9 @@
 	>
 <style type="text/css">
 	.st0{fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
-	.st2{fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
-	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;}
 	.st4{fill:none;stroke:#F96616;stroke-width:2.8346;stroke-miterlimit:10;}
 	.st5{fill:#F96616;}
 	.st6{fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;}
@@ -15,14 +15,18 @@
 	.st8{opacity:0.5;}
 	.st9{opacity:0.5;fill:none;stroke:#000000;stroke-width:2.8346;stroke-miterlimit:10;}
 	.st10{font-family:'Times-Bold';}
-	.st11{font-size:20.5946px;}
+	.st11{font-size:20.5945px;}
 	.st12{font-family:'Times-BoldItalic';}
+	.st13{fill:none;stroke:#CD41EF;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st14{fill:#CD41EF;}
+	.st15{fill:none;stroke:#0BD35C;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st16{fill:#0BD35C;}
 </style>
 <g>
 	<g>
 		<g>
 			<g>
-				<line class="st2" x1="281.7" y1="53" x2="468.8" y2="53"/>
+				<line class="st1" x1="281.7" y1="53" x2="468.8" y2="53"/>
 				<g>
 					<path d="M281.7,57.2c-2.4,0-4.3-1.9-4.3-4.3s1.9-4.3,4.3-4.3c2.4,0,4.3,1.9,4.3,4.3S284,57.2,281.7,57.2z"/>
 				</g>
@@ -31,14 +35,14 @@
 				</g>
 			</g>
 		</g>
-		<polyline class="st1" points="389.3,51.3 362.1,40.2 362.1,65.7 389.3,54.6 		"/>
+		<polyline class="st3" points="389.3,51.3 362.1,40.2 362.1,65.7 389.3,54.6 		"/>
 		
-			<rect x="376.6" y="51.5" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 442.2961 -336.3859)" class="st1" width="25.5" height="2.8"/>
+			<rect x="376.6" y="51.5" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 442.2961 -336.3859)" class="st3" width="25.5" height="2.8"/>
 	</g>
 	<g>
 		<g>
 			<g>
-				<line class="st2" x1="281.7" y1="240" x2="281.7" y2="53"/>
+				<line class="st1" x1="281.7" y1="240" x2="281.7" y2="53"/>
 				<g>
 					<circle cx="281.7" cy="240" r="4.3"/>
 				</g>
@@ -47,8 +51,8 @@
 				</g>
 			</g>
 		</g>
-		<polyline class="st1" points="280,132.4 268.9,159.6 294.4,159.6 283.3,132.4 		"/>
-		<rect x="268.9" y="131" class="st1" width="25.5" height="2.8"/>
+		<polyline class="st3" points="280,132.4 268.9,159.6 294.4,159.6 283.3,132.4 		"/>
+		<rect x="268.9" y="131" class="st3" width="25.5" height="2.8"/>
 	</g>
 	<text transform="matrix(1 0 0 1 299.3238 150.9321)" class="st10 st11">1N914</text>
 	<text transform="matrix(1 0 0 1 393.278 40.5907)" class="st10 st11">1N914</text>
@@ -72,9 +76,9 @@
 				</g>
 			</g>
 			
-				<rect x="166.9" y="51.5" transform="matrix(6.123234e-17 -1 1 6.123234e-17 130.9167 236.8279)" class="st1" width="34" height="2.8"/>
+				<rect x="166.9" y="51.5" transform="matrix(6.123234e-17 -1 1 6.123234e-17 130.9167 236.8279)" class="st3" width="34" height="2.8"/>
 			
-				<rect x="175.4" y="51.5" transform="matrix(6.123234e-17 -1 1 6.123234e-17 139.4206 245.3319)" class="st1" width="34" height="2.8"/>
+				<rect x="175.4" y="51.5" transform="matrix(6.123234e-17 -1 1 6.123234e-17 139.4206 245.3319)" class="st3" width="34" height="2.8"/>
 		</g>
 		<line class="st0" x1="202.6" y1="31.7" x2="194.1" y2="31.7"/>
 		<line class="st0" x1="198.4" y1="35.9" x2="198.4" y2="27.4"/>
@@ -84,7 +88,7 @@
 	<g>
 		<g>
 			<g>
-				<line class="st2" x1="94.6" y1="109.3" x2="94.6" y2="53"/>
+				<line class="st1" x1="94.6" y1="109.3" x2="94.6" y2="53"/>
 				<g>
 					<path d="M98.9,53c0-2.4-1.9-4.3-4.3-4.3s-4.3,1.9-4.3,4.3c0,2.4,1.9,4.3,4.3,4.3S98.9,55.3,98.9,53z"/>
 				</g>
@@ -92,14 +96,14 @@
 		</g>
 		<g>
 			<g>
-				<line class="st2" x1="94.6" y1="240" x2="94.6" y2="171.7"/>
+				<line class="st1" x1="94.6" y1="240" x2="94.6" y2="171.7"/>
 				<g>
 					<circle cx="94.6" cy="240" r="4.3"/>
 				</g>
 			</g>
 		</g>
-		<circle class="st3" cx="94.6" cy="140.5" r="31.2"/>
-		<path class="st3" d="M123.2,128c-6.9,0-12,25-18.9,25c-6.9,0-12-25-18.9-25c-6.9,0-12,25-18.9,25"/>
+		<circle class="st2" cx="94.6" cy="140.5" r="31.2"/>
+		<path class="st2" d="M123.2,128c-6.9,0-12,25-18.9,25c-6.9,0-12-25-18.9-25c-6.9,0-12,25-18.9,25"/>
 	</g>
 	<text transform="matrix(1 0 0 1 198.36 82.1445)" class="st12 st11">10μF</text>
 	<text transform="matrix(1 0 0 1 677.0684 164.5845)" class="st12 st11">10μF</text>
@@ -107,7 +111,7 @@
 	<text transform="matrix(1 0 0 1 136.5553 133.968)"><tspan x="0" y="0" class="st12 st11">10Vpp</tspan><tspan x="0" y="24.7" class="st12 st11">100Hz</tspan></text>
 	<g>
 		<g>
-			<polyline class="st2" points="468.8,240 468.8,174.2 477.3,170.8 460.3,163.8 477.3,156.9 460.3,150 477.3,143 460.3,136.1 
+			<polyline class="st1" points="468.8,240 468.8,174.2 477.3,170.8 460.3,163.8 477.3,156.9 460.3,150 477.3,143 460.3,136.1 
 				477.3,129.2 460.3,122.2 468.8,118.8 468.8,53 			"/>
 			<g>
 				<circle cx="468.8" cy="240" r="4.3"/>
@@ -146,8 +150,8 @@
 					</g>
 				</g>
 			</g>
-			<rect x="638.7" y="149.1" class="st1" width="34" height="2.8"/>
-			<rect x="638.7" y="140.6" class="st1" width="34" height="2.8"/>
+			<rect x="638.7" y="149.1" class="st3" width="34" height="2.8"/>
+			<rect x="638.7" y="140.6" class="st3" width="34" height="2.8"/>
 		</g>
 		<line class="st0" x1="677" y1="131.8" x2="677" y2="140.3"/>
 		<line class="st0" x1="672.7" y1="136" x2="681.2" y2="136"/>
