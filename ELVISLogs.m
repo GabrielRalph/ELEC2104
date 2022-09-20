@@ -55,13 +55,14 @@ classdef ELVISLogs
         function plot(obj)
             [~, ~, ns] = size(obj.signals);
      
+            colors = get(gca, 'ColorOrder');
             for i = 1:ns
                 if strcmp(obj.logaxis, "x")
-                    semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
                 elseif strcmp(obj.logaxis, "y")
-                    semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
                 else
-                    plot(obj.signals(:, 1, i), obj.signals(:, 2, i));
+                    plot(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
                 end
                 
                 hold on
