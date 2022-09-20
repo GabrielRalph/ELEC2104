@@ -20,11 +20,11 @@ classdef ELVISLogs
     
     methods
         function obj = ELVISLogs(text)
-           obj = obj.parseLogData(text);
            obj.plottitle = obj.type;
            obj.xintercepts = [];
            obj.plotrange = [0, 1];
            obj.plotlegend = ["CH0", "CH1"];
+           obj = obj.parseLogData(text);
         end
         
         
@@ -103,6 +103,58 @@ classdef ELVISLogs
             obj.type = "voltage/current";
         end
         
+        function obj = parse3WireData(obj, text)
+            w3_title_regex = 'Base current[ \t]*\((?<Ib_unit>[^)]+)\)[ \t]*:[ \t]*(?<Ib>\d+\.?\d?)\s+Collector Voltage[ \t]*\((?<Vc_unit>\w+)\)[ \t]*,[ \t]*Collector Current[ \t]*\((?<Ic_unit>[^)]+)\)';
+            vc_data_regex = '\n(?<Vc>-?\d+\.\d+)[ \t]+(?<Ic>-?\d+\.\d+)';
+            
+            tinfo = regexp(text, w3_title_regex, 'names');
+            if ~isempty(tinfo)
+                series = regexp(text, w3_title_regex, 'split');
+                series = series(2:end);
+                
+                s1 = regexp(series{1}, vc_data_regex, 'names');
+                n = length(s1);
+                sn = length(series);
+                
+                data = zeros(n, 2, sn);
+                for i = 1:sn
+                    si = regexp(series{i}, vc_data_regex, 'names');
+                    for j = 1:n
+                       data(j, :, i) = [str2double(si(j).Vc), str2double(si(j).Ic)];
+                    end
+                end
+                           
+                obj.signals = data;
+                obj.xaxis = sprintf("Collector Voltage (%s)", tinfo(1).Vc_unit);
+                obj.yaxis = sprintf("Collector Current (%s)", tinfo(1).Ic_unit);
+                
+                cinfo = squeeze(struct2cell(tinfo));
+                legend = cellfun(@(unit,value) (sprintf("I_B = %s (%s)", value, unit)),cinfo(1,:)',cinfo(2,:)','UniformOutput',false);
+                obj.plotlegend = legend;
+            end
+                
+            
+            obj.type = "3wire";
+        end
+        
+        function obj = parseVoltageTransferData(obj, text) 
+            vt_title_regex = 'Y_Unit_Label[ \t]+Measurement[ \t]*\((?<yunit>\w+)\)\s+X_Dimension[ \t]+Supply\+[ \t]*\((?<xunit>\w+)\)';
+            vt_data_regex = '\n(?<volts>-?\d+\.\d+)[ \t]+(?<current>-?\d+\.\d+)';
+            tinfo = regexp(text, vt_title_regex, 'names');
+            
+            tdata = regexp(text, vt_data_regex, 'names');
+            
+            n = length(tdata);
+            data = zeros(length(tdata), 2);
+            for i = 1:n
+                data(i, :) = [str2double(tdata(i).volts), str2double(tdata(i).current)];
+            end
+            
+            obj.signals = data;
+            obj.xaxis = sprintf("Voltage (%s)", tinfo.xunit);
+            obj.yaxis = sprintf("Voltage (%s)", tinfo.yunit);
+        end
+        
         function obj = parseWaveformData(obj, text)
             wf_lines_regex = '\n([ \t]*\d+/\d+/\d+\s+\d+:\d+:\d+\.\d+\s-?\d+\.\d+E[-+]\d+)+';
             wf_signals_regex = '[ \t]*(?<time>\d+/\d+/\d+\s+\d+:\d+:\d+)(?<millis>\.\d+)\s(?<value>-?\d+\.\d+E[-+]\d+)';
@@ -141,11 +193,17 @@ classdef ELVISLogs
             
             iswf = regexp(text, 'waveform', 'once');
             isvc = regexp(text, 'Voltage[ \t]*\(\w+\)[ \t]*,[ \t]*Current[ \t]*\(\w+\)', 'once');
+            isw3 = regexp(text, 'Base current[ \t]*\((?<Ib_unit>[^)]+)\)[ \t]*:[ \t]*(?<Ib>\d+\.?\d?)\s+Collector Voltage[ \t]*\((?<Vc_unit>\w+)\)[ \t]*,[ \t]*Collector Current[ \t]*\((?<Ic_unit>[^)]+)\)', 'once');
+            isvt = regexp(text, 'Y_Unit_Label[ \t]+Measurement[ \t]*\((?<yunit>\w+)\)\s+X_Dimension[ \t]+Supply\+[ \t]*\((?<cunit>\w+)\)', 'once');
             
             if ~isempty(iswf)
                obj = obj.parseWaveformData(text);
             elseif ~isempty(isvc)
                 obj = obj.parseVoltageCurrentData(text);
+            elseif ~isempty(isw3)
+                obj = obj.parse3WireData(text);
+            elseif ~isempty(isvt)
+                obj = obj.parseVoltageTransferData(text);
             else 
                 obj.invalid = true;
             end
