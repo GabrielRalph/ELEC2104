@@ -139,7 +139,7 @@ classdef ELVISLogs
         
         function obj = parseVoltageTransferData(obj, text) 
             vt_title_regex = 'Y_Unit_Label[ \t]+Measurement[ \t]*\((?<yunit>\w+)\)\s+X_Dimension[ \t]+Supply\+[ \t]*\((?<xunit>\w+)\)';
-            vt_data_regex = '\n(?<volts>-?\d+\.\d+)[ \t]+(?<current>-?\d+\.\d+)';
+            vt_data_regex = '\n(?<volts>-?\d+\.\d+)[ \t]+(?<current>-?\d+\.\d+E?-?\d+)';
             tinfo = regexp(text, vt_title_regex, 'names');
             
             tdata = regexp(text, vt_data_regex, 'names');
