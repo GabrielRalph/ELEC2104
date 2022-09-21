@@ -1,4 +1,4 @@
-w3 = ELVISLogs.open("./Lab3/Q4/3 Wire Analysis.txt");
+w3 = ELVISLogs("./Lab3/Q4/3 Wire Analysis.txt");
 
 % Get signals
 sigs = w3.signals;

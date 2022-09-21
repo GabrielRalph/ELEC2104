@@ -15,76 +15,54 @@ classdef ELVISLogs
         plotrange
         logaxis
         xintercepts
-        
+        filename
+    end
+    
+    properties (Constant)
+        SignalColors = get(gca, 'ColorOrder');
     end
     
     methods
-        function obj = ELVISLogs(text)
+        function obj = ELVISLogs(filename)
+           obj.logaxis = 0;
+           obj.signals = zeros(1, 2, 1);
            obj.plottitle = obj.type;
            obj.xintercepts = [];
            obj.plotrange = [0, 1];
            obj.plotlegend = ["CH0", "CH1"];
+           
+           % Open file
+           obj.filename = filename;
+           text = fileread(filename);
+           
+           % Parse log data
            obj = obj.parseLogData(text);
         end
         
-        
-        function range = getRange(obj)
-            sigs = obj.signals;
-            [n, ~, ~] = size(sigs);
-            r = obj.plotrange;
-            r = round((n - 1) * r ) + 1;
-            t0 = sigs(r(1), 1, 1);
-            t1 = sigs(r(2), 1, 1);
-            range = [t0, t1];
-        end
-        
-        function y = intercept(obj, xvalue)
-            sigs = obj.signals;
-            [~, ~, ns] = size(sigs);
-            for is = 1:ns
-                [~,i] = min(abs(sigs(:, 1, is) - xvalue));
-                if i > 1
-                    x = sigs(i, 1, is);
-                    y = sigs(i, 2, is);
-                    plot(x, y, "*");
-                    text(x, y, sprintf("(%.2f, %.2f)", x, y));
-                end
-            end
-        end
-        
-        function plot(obj)
-            [~, ~, ns] = size(obj.signals);
-     
-            colors = get(gca, 'ColorOrder');
-            for i = 1:ns
-                if strcmp(obj.logaxis, "x")
-                    semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
-                elseif strcmp(obj.logaxis, "y")
-                    semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
-                else
-                    plot(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
-                end
-                
-                hold on
-            end
-            xlim(obj.getRange());
-            xlabel(obj.xaxis);
-            ylabel(obj.yaxis);
-            title(obj.plottitle);
+    
+      %% Log file parsers
+        function obj = parseLogData(obj, text)
+            obj.invalid = false;
             
-            n = length(obj.xintercepts);
-            if n > 0
-                for i = 1:n
-                    obj.intercept(obj.xintercepts(i));
-                end
-            end
+            iswf = regexp(text, 'waveform', 'once');
+            isvc = regexp(text, 'Voltage[ \t]*\(\w+\)[ \t]*,[ \t]*Current[ \t]*\(\w+\)', 'once');
+            isw3 = regexp(text, 'Base current[ \t]*\((?<Ib_unit>[^)]+)\)[ \t]*:[ \t]*(?<Ib>\d+\.?\d?)\s+Collector Voltage[ \t]*\((?<Vc_unit>\w+)\)[ \t]*,[ \t]*Collector Current[ \t]*\((?<Ic_unit>[^)]+)\)', 'once');
+            isvt = regexp(text, 'Y_Unit_Label[ \t]+Measurement[ \t]*\((?<yunit>\w+)\)\s+X_Dimension[ \t]+Supply\+[ \t]*\((?<cunit>\w+)\)', 'once');
             
-            if ns > 1
-                legend(obj.plotlegend);
+            if ~isempty(iswf)
+               obj = obj.parseWaveformData(text);
+            elseif ~isempty(isvc)
+                obj = obj.parseVoltageCurrentData(text);
+            elseif ~isempty(isw3)
+                obj = obj.parse3WireData(text);
+            elseif ~isempty(isvt)
+                obj = obj.parseVoltageTransferData(text);
+            else 
+                obj.invalid = true;
             end
         end
         
- 
+        
         function obj = parseVoltageCurrentData(obj, text)
             vc_title_regex = 'Voltage[ \t]*\((?<vunit>\w+)\)[ \t]*,[ \t]*Current[ \t]*\((?<cunit>\w+)\)';
             vc_data_regex = '\n(?<volts>-?\d+\.\d+)[ \t]+(?<current>-?\d+\.\d+)';
@@ -187,58 +165,95 @@ classdef ELVISLogs
             obj.yaxis = "voltage (V)";
             obj.type = "waveform";
         end
-      
-       
-        function obj = parseLogData(obj, text)
-            obj.invalid = false;
+        
+        
+       %% Plot methods
+        function obj = addPlotCmds(obj, text)
+            [plotCmds] = regexp(text, '(?<cmd>[lgrxi])\[(?<params>[^\]]+)\]', 'names');
             
-            iswf = regexp(text, 'waveform', 'once');
-            isvc = regexp(text, 'Voltage[ \t]*\(\w+\)[ \t]*,[ \t]*Current[ \t]*\(\w+\)', 'once');
-            isw3 = regexp(text, 'Base current[ \t]*\((?<Ib_unit>[^)]+)\)[ \t]*:[ \t]*(?<Ib>\d+\.?\d?)\s+Collector Voltage[ \t]*\((?<Vc_unit>\w+)\)[ \t]*,[ \t]*Collector Current[ \t]*\((?<Ic_unit>[^)]+)\)', 'once');
-            isvt = regexp(text, 'Y_Unit_Label[ \t]+Measurement[ \t]*\((?<yunit>\w+)\)\s+X_Dimension[ \t]+Supply\+[ \t]*\((?<cunit>\w+)\)', 'once');
+            for pi = 1:length(plotCmds)
+                cmd = plotCmds(pi).cmd;
+                params = plotCmds(pi).params;
+                switch (cmd)
+                    case "g"
+                        obj.plotlegend = regexp(params, '[, \t]+', 'split');
+                    case "l"
+                        obj.logaxis = params;
+                    case "r"
+                        range = str2double(regexp(params, '[, \t]+', 'split'));
+                        if range(1) < 0, range(1) = 0;end
+                        if range(2) > 1, range(2) = 1;end
+                        if range(1) > range(2), range(1) = range(2);end
+                        obj.plotrange = range;
+                    case "x"
+                        obj.xintercepts = str2double(regexp(params, '[, \t]+', 'split'));
+                end
+            end
             
-            if ~isempty(iswf)
-               obj = obj.parseWaveformData(text);
-            elseif ~isempty(isvc)
-                obj = obj.parseVoltageCurrentData(text);
-            elseif ~isempty(isw3)
-                obj = obj.parse3WireData(text);
-            elseif ~isempty(isvt)
-                obj = obj.parseVoltageTransferData(text);
-            else 
-                obj.invalid = true;
+            obj.plottitle = desc(1).name;
+        end
+        
+        function range = getRange(obj)
+            sigs = obj.signals;
+            [n, ~, ~] = size(sigs);
+            r = obj.plotrange;
+            r = round((n - 1) * r ) + 1;
+            t0 = sigs(r(1), 1, 1);
+            t1 = sigs(r(2), 1, 1);
+            range = [t0, t1];
+        end
+        
+        function y = intercept(obj, xvalue)
+            sigs = obj.signals;
+            [~, ~, ns] = size(sigs);
+            for is = 1:ns
+                [~,i] = min(abs(sigs(:, 1, is) - xvalue));
+                if i > 1
+                    x = sigs(i, 1, is);
+                    y = sigs(i, 2, is);
+                    plot(x, y, "*");
+                    text(x, y, sprintf("(%.2f, %.2f)", x, y));
+                end
             end
         end
         
-        function obj = extractPlotInfo(obj, filename)
-            desc = regexp(filename, '(?<name>[^\(/]+)\((?<pfuncs>[^\)]+)\).txt', 'names');
-            if isempty(desc)
-                desc = regexp(filename, '(?<name>[^\(/]+).txt', 'names');
-            else 
-                [pfuncs] = regexp(desc(1).pfuncs, '(?<cmd>[lgrxi])\[(?<params>[^\]]+)\]', 'names');
+        function plot(obj)
+            [~, ~, ns] = size(obj.signals);
+     
             
-                for pi = 1:length(pfuncs)
-                    cmd = pfuncs(pi).cmd;
-                    params = pfuncs(pi).params;
-                    switch (cmd)
-                        case "g"
-                            obj.plotlegend = regexp(params, '[, \t]+', 'split');
-                        case "l"
-                            obj.logaxis = params;
-                        case "r"
-                            range = str2double(regexp(params, '[, \t]+', 'split'));
-                            if range(1) < 0, range(1) = 0;end
-                            if range(2) > 1, range(2) = 1;end
-                            if range(1) > range(2), range(1) = range(2);end
-                            obj.plotrange = range;
-                        case "x"
-                            obj.xintercepts = str2double(regexp(params, '[, \t]+', 'split'));
-                                
-                    end
+            colors = get(gca, 'ColorOrder');
+            for i = 1:ns
+                switch obj.logaxis
+                    case 'x'
+                        semilogx(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
+                    case 'y'
+                        semilogy(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
+                    otherwise
+                        plot(obj.signals(:, 1, i), obj.signals(:, 2, i), 'Color', colors(i, :));
                 end
-            end 
+                hold on
+            end
+            xlim(obj.getRange());
+            xlabel(obj.xaxis);
+            ylabel(obj.yaxis);
+            title(obj.plottitle);
             
-            obj.plottitle = desc(1).name;
+            n = length(obj.xintercepts);
+            if n > 0
+                for i = 1:n
+                    obj.intercept(obj.xintercepts(i));
+                end
+            end
+            
+            if ns > 1
+                legend(obj.plotlegend);
+            end
+        end
+        
+        function save(obj, type)
+            fname = regexprep(obj.filename, "[.]txt", "");
+
+            saveas(gca, fname, type);
         end
     end
         
@@ -251,16 +266,6 @@ classdef ELVISLogs
             dpoint = [time - time0, value];
         end
         
-        function logs = open(filename)
-            text = fileread(filename);
-            logs = ELVISLogs(text);
-            
-            if ~logs.invalid
-                logs = logs.extractPlotInfo(filename);
-            end
-        end
-       
-        
         function plotAllLogs(root)
             folders = dir(root);
             for i = 1:length(folders)
@@ -268,15 +273,10 @@ classdef ELVISLogs
                 if ~strcmp(name, ".") && ~strcmp(name, "..") && folders(i).isdir
                     ELVISLogs.plotAllLogs(append(root, name, "/"));
                 elseif ~isempty(regexp(name, '.txt$', 'once'))
-                    elvis = ELVISLogs.open(append(root, name));
-                    if ~elvis.invalid
-                        elvis.plot();
-                        
-                        filename = regexprep(elvis.plottitle, "[.]", "_");
-                        filename = append(root, filename);
-                        
-                        saveas(gca, filename, "svg");
-                        close();
+                    logs = ELVISLogs(append(root, name));
+                    if ~logs.invalid
+                        logs.plot();
+                        logs.save("svg");
                     end
                 end
             end
