@@ -47,7 +47,7 @@ export const Equations = [
    name: "Net Charge Neutrality"
  },
  {
-   equation: "n_i^2 = B T^3 e^{-\\cfrac{E_g}{k T}}",
+   equation: "n_i^2 = B T^3 e^{-\\cfrac{E_g}{k_B T}}",
    unit: "cm^{-6}",
    name: "Intrinsic carrier density"
  },
@@ -108,7 +108,17 @@ export const Equations = [
    unit: "A/cm^2",
  },
  {
-   equation: "\\cfrac{D_n}{\\mu_n} = \\cfrac{k T}{q} = \\cfrac{D_p}{\\mu_p}",
+   equation: "\\cfrac{D_n}{\\mu_n} = \\cfrac{k_B T}{q} = \\cfrac{D_p}{\\mu_p}",
    name: "Einstein Relation",
  },
+ {
+   equation: "E_i = \\cfrac{E_c + E_v} {2}",
+   name: "Intrinsic Fermi Level",
+   notes: "For semiconductors without doping."
+ },
+ {
+   equation: "V_{bi} = \\cfrac{k_B T} {q} \\ln \\cfrac{N_A N_D}{n_i^2}",
+   name: "Intrinsic Fermi Level",
+   notes: "For semiconductors without doping."
+ }
 ]
