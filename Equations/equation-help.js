@@ -9,6 +9,7 @@ let JAXFUNCS = {
   "\\sum": 0,
   "\\Delta": 0,
   "\\approx": 0,
+  "\\partial": 0,
   "e": 0,
 }
 

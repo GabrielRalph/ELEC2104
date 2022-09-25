@@ -44,7 +44,7 @@ export const Equations = [
 },
  {
    equation: "p + N_D = n + N_A",
-   name: "Net Charge"
+   name: "Net Charge Neutrality"
  },
  {
    equation: "n_i^2 = B T^3 e^{-\\cfrac{E_g}{k T}}",
@@ -54,11 +54,61 @@ export const Equations = [
  {
    equation: "n = \\cfrac{(N_D - N_A) + \\sqrt{(N_D - N_A)^2 + 4 n_i^2}}{2}",
    notes: "For n-type semiconductor",
-   name: "Electron density"
+   name: "Electron Density"
  },
  {
    equation: "p = \\cfrac{(N_A - N_D) + \\sqrt{(N_A - N_D)^2 + 4 n_i^2}}{2}",
-   name: "Hole density",
+   name: "Hole Density",
    notes: "For p-type semiconductor"
- }
+ },
+ {
+   equation: "v_n = - \\mu_n E",
+   name: "Electron Drift Velocity",
+   notes: "$\\mu_n$ = 1350\\cfrac{m^2}{Vs}",
+
+ },
+ {
+   equation: "v_p = \\mu_p E",
+   name: "Hole Drift Velocity",
+   notes: "$\\mu_p = 500\\cfrac{m^2}{Vs}$",
+ },
+ {
+   equation: "J = Q V",
+   name: "Drift Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_{n \\ drift} = q n \\mu_n E",
+   name: "Electron Drift Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_{p \\ drift} = q p \\mu_p E",
+   name: "Hole Drift Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_{drift} = q (n \\mu_n + p \\mu_p) E",
+   name: "Electron Drift Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_{n \\ diff} = q D_n \\cfrac{\\partial n}{\\partial x} \\mu_n E",
+   name: "Electron Diffusion Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_{p \\ diff} = - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_n E",
+   name: "Hole Diffusion Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "J_T = q p \\mu_p E + q D_n \\cfrac{\\partial n}{\\partial x} \\mu_n E + q p \\mu_p E - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_n E",
+   name: "Hole Diffusion Current Density",
+   unit: "A/cm^2",
+ },
+ {
+   equation: "\\cfrac{D_n}{\\mu_n} = \\cfrac{k T}{q} = \\cfrac{D_p}{\\mu_p}",
+   name: "Einstein Relation",
+ },
 ]
