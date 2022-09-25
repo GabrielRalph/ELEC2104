@@ -82,6 +82,11 @@ class EquationHelp extends SvgPlus {
     this.vlist = new SvgPlus(this.querySelector(".variables"));
     this.vtitle = new SvgPlus(this.querySelector(".variables-title"));
     this.etitle = new SvgPlus(this.querySelector(".equations-title"));
+    let search = new SvgPlus(this.querySelector("input"));
+    search.oninput = () => {
+      this.renderVList(search.value);
+    }
+    this.search = search;
 
     this.vtitle.onclick = () => {
       this.clearSelected();
@@ -118,15 +123,25 @@ class EquationHelp extends SvgPlus {
     return equations;
   }
 
-  renderVList(){
+  renderVList(filter){
+    if (!filter) {
+      this.search.value = "";
+    }
+
     let {variables, vlist} = this;
 
     vlist.innerHTML = "";
     for (let vari in variables.variables) {
-      let icon = vlist.createChild("div", {content: '$' + vari + '$', name: vari});
-      icon.onclick = () => {
-        icon.toggleAttribute("selected");
-        this.updateEList();
+      let filtered = vari.indexOf(filter) == -1
+      if (!filter || !filtered) {
+        let icon = vlist.createChild("div", {content: '$' + vari + '$', name: vari});
+        icon.onclick = () => {
+          icon.toggleAttribute("selected");
+          this.updateEList();
+        }
+        if (filter && !filtered) {
+          icon.toggleAttribute("selected");
+        }
       }
     }
 
