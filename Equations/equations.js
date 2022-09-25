@@ -118,7 +118,11 @@ export const Equations = [
  },
  {
    equation: "V_{bi} = \\cfrac{k_B T} {q} \\ln \\cfrac{N_A N_D}{n_i^2}",
-   name: "Intrinsic Fermi Level",
-   notes: "For semiconductors without doping."
+   name: "Built in Potential",
+ },
+ {
+   equation: "w = \\sqrt{\\cfrac{2 \\epsilon_s}{q}(\\cfrac{1}{N_A} + \\cfrac{1}{N_D})(V_{bi} + V_R)}",
+   name: "Depleion Region Width",
+   notes: "$V_R$ is external bias, $\epsilon_s$ permittivity of semiconductor"
  }
 ]
