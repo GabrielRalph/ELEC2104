@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Equations</title>
+
+    <script>
+
+      MathJax = {
+        loader: {load: ['[tex]/color']},
+        tex: {
+          packages: {'[+]': ['color']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          macros: {
+            trans: `\\underset{heat}{\\overset{cool}{\\rightleftharpoons}}`,
+            mat: ["\\left[ \\begin{matrix} #1 \\end{matrix} \\right]", 1],
+            eq: ["\\begin{equation} #1 \\label{#2} \\end{equation}", 2],
+            dpar: ["\\cfrac{\\partial #1}{\\partial #2}", 2],
+            hl: ["{\\color{WildStrawberry} #1}", 1],
+            red: ["{\\color{BrickRed} {#1}_1}", 1],
+            blue: ["{\\color{RoyalBlue} {#1}_2}", 1],
+          },
+          tags: "ams",
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script type = "module" src = "./equation-help.js"></script>
+  </head>
+  <body>
+    <equation-help>
+      <div class = "tools">
+        <span>Search</span> <input /> <span>clear</span>
+      </div>
+      <h1 class = "equations-title">Equations</h1>
+      <h1 class = "variables-title">Variables</h1>
+      <div class = "equations list">
+
+      </div>
+      <div class = "variables list">
+
+      </div>
+    </equation-help>
+  </body>
+  <style>
+
+    body {
+      overflow: hidden;
+      font-size: calc(0.85vmax + 0.85vmin);
+    }
+    h1 {
+      text-align: center;
+      margin: 0;
+      line-height: 2em;
+    }
+    equation-help {
+      font-family: monospace;
+      margin: 0.5em;
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      grid-template-rows: 2em 4em;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .tools {
+      display: flex;
+      grid-row-start: 1;
+      grid-column-start: 1;
+      grid-row-end: 1;
+      grid-column-end: 3;
+      gap: 20px;
+      font-size: 1.5em;
+      position: relative;
+      align-items: center;
+    }
+    .tools input {
+      width: 100%;
+      font: inherit;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-bottom: 2px solid black;
+      outline: none;
+    }
+
+    .equations-title {
+      display: grid;
+      grid-row-start: 2;
+      grid-column-start: 1;
+      grid-row-end: 2;
+      grid-column-end: 1;
+    }
+    .variables-title {
+      display: grid;
+      grid-row-start: 2;
+      grid-column-start: 2;
+      grid-row-end: 2;
+      grid-column-end: 2;
+    }
+
+    .equations {
+      grid-row-start: 3;
+      grid-column-start: 1;
+      grid-row-end: 3;
+      grid-column-end: 1;
+    }
+
+    .variables{
+      grid-row-start: 3;
+      grid-column-start: 2;
+      grid-row-end: 3;
+      grid-column-end: 2;
+    }
+
+    .list {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+    }
+    .list > div {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 0.3em 0;
+    }
+    .list > div[selected]::after {
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background: black;
+      content: " "
+    }
+
+  </style>
+
+</html>
