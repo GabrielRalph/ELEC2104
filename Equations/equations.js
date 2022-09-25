@@ -98,7 +98,7 @@ export const Equations = [
    unit: "A/cm^2",
  },
  {
-   equation: "J_{p \\ diff} = - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_n E",
+   equation: "J_{p \\ diff} = - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_p E",
    name: "Hole Diffusion Current Density",
    unit: "A/cm^2",
  },
