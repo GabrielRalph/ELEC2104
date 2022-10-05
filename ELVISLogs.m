@@ -190,7 +190,7 @@ classdef ELVISLogs
                 end
             end
             
-            obj.plottitle = desc(1).name;
+%             obj.plottitle = desc(1).name;
         end
         
         function range = getRange(obj)
@@ -212,7 +212,7 @@ classdef ELVISLogs
                     x = sigs(i, 1, is);
                     y = sigs(i, 2, is);
                     plot(x, y, "*");
-                    text(x, y, sprintf("(%.2f, %.2f)", x, y));
+                    text(x, y, sprintf("(%.2g, %.2g)", x, y));
                 end
             end
         end
