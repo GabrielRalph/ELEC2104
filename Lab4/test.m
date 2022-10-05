@@ -1,16 +1,29 @@
-logs0 = ELVISLogs("./Q2/Opto 0V.txt");
-logs4 = ELVISLogs("./Q2/Opto 4V.txt");
-logs6 = ELVISLogs("./Q2/Opto 6.7V.txt");
+clc; clear;
+%% Question 1
+% yceps = [14, 
+logs = ELVISLogs.getAll("Lab4/Q1");
+
+l0 = logs(3);
+ l0.plot();
+% l0.intercept(14, true)
+ l0.save("svg");
+
+%% Question 2
+logs = ELVISLogs.getAll("Lab4/Q2");
+l0 = logs(1);
+l0.signals = cat(3, logs.signals);
+l0.plot()
+legend([logs.plottitle]);
+title("Current vs Voltage");
+l0.save("svg");
 
 
-scomb = cat(3, logs0.signals, logs4.signals, logs6.signals);
 
-logs0.signals = scomb;
-logs0.plotlegend = ["V_{LED} = 0V", "V_{LED} = 3.9V", "V_{LED} = 6.7V"];
-
-ymeans = squeeze(mean(scomb(10:end, 2, :)));
-for i = 1:3, yline(ymeans(i)); end
-hold on
-logs0.plot()
-
-title("IR Receiver Response");
+%% Question 3
+logs = ELVISLogs.getAll("Lab4/Q3");
+for i = 1:length(logs)
+    logs(i).plot();
+%     axis([1,1]);
+    logs(i).save("svg");
+    clf;
+end

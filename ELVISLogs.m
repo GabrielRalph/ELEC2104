@@ -26,10 +26,13 @@ classdef ELVISLogs
         function obj = ELVISLogs(filename)
            obj.logaxis = 0;
            obj.signals = zeros(1, 2, 1);
-           obj.plottitle = obj.type;
+           
            obj.xintercepts = [];
            obj.plotrange = [0, 1];
            obj.plotlegend = ["CH0", "CH1"];
+           
+           t = split(filename, {'/', '.tx'});
+           obj.plottitle = t(end - 1);
            
            % Open file
            obj.filename = filename;
@@ -203,24 +206,39 @@ classdef ELVISLogs
             range = [t0, t1];
         end
         
-        function y = intercept(obj, xvalue)
+        
+%         function x = interceptx(obj, yvalue)
+%             sigs = obj.signals;
+%             x = 
+%             
+%         end
+        
+        function y = intercept(obj, value, isy)
             sigs = obj.signals;
-            [~, ~, ns] = size(sigs);
-            for is = 1:ns
-                [~,i] = min(abs(sigs(:, 1, is) - xvalue));
-                if i > 1
-                    x = sigs(i, 1, is);
-                    y = sigs(i, 2, is);
-                    plot(x, y, "*");
-                    text(x, y, sprintf("(%.2g, %.2g)", x, y));
-                end
+            if exist("isy", "var")
+                [uy, xi] = unique(sigs(:, 2, :));
+                x = interp1(uy, sigs(xi, 1, :), value);
+                for i = 1:length(x)
+                    if ~isnan(x(i))
+                        plot(x(i), value(i), "*");
+                        text(x(i), value(i), sprintf("(%.3g, %.3g)", x(i), value));
+                    end
+                end 
+            else
+                y = interp1(sigs(:, 1, :), sigs(:, 2, :), value);
+                for i = 1:length(y)
+                    if ~isnan(y(i))
+                        plot(value, y(i), "*");
+                        text(value, y(i), sprintf("(%.3g, %.3g)", value, y(i)));
+                    end
+                end 
             end
+            
         end
         
         function plot(obj)
             [~, ~, ns] = size(obj.signals);
      
-            
             colors = get(gca, 'ColorOrder');
             for i = 1:ns
                 switch obj.logaxis
@@ -266,17 +284,19 @@ classdef ELVISLogs
             dpoint = [time - time0, value];
         end
         
-        function plotAllLogs(root)
-            folders = dir(root);
+        function all_logs = getAll(root)
+            all_logs = [];
+            folders = dir(root)
+            
             for i = 1:length(folders)
                  name = folders(i).name;
                 if ~strcmp(name, ".") && ~strcmp(name, "..") && folders(i).isdir
-                    ELVISLogs.plotAllLogs(append(root, name, "/"));
+                    logs = ELVISLogs.getAll(append(root, name, "/"));
+                    all_logs = cat(1, all_logs, logs);
                 elseif ~isempty(regexp(name, '.txt$', 'once'))
-                    logs = ELVISLogs(append(root, name));
+                    logs = ELVISLogs(root + "/" + name);
                     if ~logs.invalid
-                        logs.plot();
-                        logs.save("svg");
+                        all_logs = cat(1, all_logs, logs);
                     end
                 end
             end
