@@ -93,17 +93,17 @@ export const Equations = [
    unit: "A/cm^2",
  },
  {
-   equation: "J_{n \\ diff} = q D_n \\cfrac{\\partial n}{\\partial x} \\mu_n",
+   equation: "J_{n \\ diff} = q D_n \\cfrac{\\partial n}{\\partial x}",
    name: "Electron Diffusion Current Density",
    unit: "A/cm^2",
  },
  {
-   equation: "J_{p \\ diff} = - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_p",
+   equation: "J_{p \\ diff} = - q D_p \\cfrac{\\partial p}{\\partial x}",
    name: "Hole Diffusion Current Density",
    unit: "A/cm^2",
  },
  {
-   equation: "J_T = q p \\mu_p E + q D_n \\cfrac{\\partial n}{\\partial x} \\mu_n E + q p \\mu_p E - q D_p \\cfrac{\\partial p}{\\partial x} \\mu_n E",
+   equation: "J_T = q (\\mu_n E n +  D_n \\cfrac{\\partial n}{\\partial x}) + q (\\mu_p E p - D_p \\cfrac{\\partial p}{\\partial x})",
    name: "Hole Diffusion Current Density",
    unit: "A/cm^2",
  },
