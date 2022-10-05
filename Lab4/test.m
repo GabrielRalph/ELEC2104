@@ -23,7 +23,6 @@ l0.save("svg");
 logs = ELVISLogs.getAll("Lab4/Q3");
 for i = 1:length(logs)
     logs(i).plot();
-%     axis([1,1]);
-    logs(i).save("svg");
+    saveas(gca, sprintf("Lab4/Q3/g%i.svg", i), "svg");
     clf;
 end
