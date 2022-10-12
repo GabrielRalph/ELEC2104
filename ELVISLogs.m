@@ -172,7 +172,7 @@ classdef ELVISLogs
         
        %% Plot methods
         function obj = addPlotCmds(obj, text)
-            [plotCmds] = regexp(text, '(?<cmd>[lgrxi])\[(?<params>[^\]]+)\]', 'names');
+            [plotCmds] = regexp(text, '(?<cmd>[lgrxyi])\[(?<params>[^\]]+)\]', 'names');
             
             for pi = 1:length(plotCmds)
                 cmd = plotCmds(pi).cmd;
@@ -190,6 +190,7 @@ classdef ELVISLogs
                         obj.plotrange = range;
                     case "x"
                         obj.xintercepts = str2double(regexp(params, '[, \t]+', 'split'));
+                  
                 end
             end
             
@@ -206,34 +207,42 @@ classdef ELVISLogs
             range = [t0, t1];
         end
         
-        
-%         function x = interceptx(obj, yvalue)
-%             sigs = obj.signals;
-%             x = 
-%             
-%         end
-        
-        function y = intercept(obj, value, isy)
+        function plotIntercepts(obj, xitcps, isy)
             sigs = obj.signals;
-            if exist("isy", "var")
-                [uy, xi] = unique(sigs(:, 2, :));
-                x = interp1(uy, sigs(xi, 1, :), value);
-                for i = 1:length(x)
-                    if ~isnan(x(i))
-                        plot(x(i), value(i), "*");
-                        text(x(i), value(i), sprintf("(%.3g, %.3g)", x(i), value));
-                    end
-                end 
-            else
-                y = interp1(sigs(:, 1, :), sigs(:, 2, :), value);
-                for i = 1:length(y)
-                    if ~isnan(y(i))
-                        plot(value, y(i), "*");
-                        text(value, y(i), sprintf("(%.3g, %.3g)", value, y(i)));
-                    end
-                end 
-            end
+            [~, ~, ns] = size(sigs);
+%             xitcps = repmat(reshape(xitcps, [], 1), 1, 1, ns);
+            sx = sigs(:, 1, :);
+            sy = squeeze(sigs(:, 2, :));
             
+            if ~exist("isyaxis", "var")
+                isy = false;
+            else
+                temp = sx;
+                sx = sy;
+                sy = temp;
+            end
+                
+            [x, isx] = unique(sx(:, 1));
+            yitcps = interp1(x, sy(isx, :), xitcps);
+            yitcps = reshape(yitcps, [], 1);
+            xitcps = reshape(repmat(xitcps, 1, ns), [], 1)
+            nonn = isnan(yitcps);
+            yitcps = yitcps(nonn);
+            xitcps = xitcps(nonn);
+            
+            if isy
+                temp = xitcps;
+                xitcps = yitcps;
+                yitcps = temp;
+            end
+            scatter(xitcps, yitcps, 'filled');
+            text(xitcps, yitcps, round(xitcps, 3) + ", " + round(yitcps, 3));
+%             for i = 1:length(x)
+%                 if ~isnan(x(i))
+%                     plot(x(i), xitcps(i), "*");
+%                     text(x(i), xitcps(i), sprintf("(%.3g, %.3g)", x(i), xitcps));
+%                 end
+%             end  
         end
         
         function plot(obj)

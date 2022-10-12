@@ -26,3 +26,10 @@ for i = 1:length(logs)
     saveas(gca, sprintf("Lab4/Q3/g%i.svg", i), "svg");
     clf;
 end
+
+%%
+log = ELVISLogs.getAll("Lab3/Q1");
+log = log(1);
+
+log.plot()
+log.plotIntercepts([0.002, 0.005], true);
