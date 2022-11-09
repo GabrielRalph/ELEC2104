@@ -42,9 +42,15 @@ for i = 1:3
     title(sprintf("Red LED Response %i", i));
 end
 %%
-logs(3).plot();
+logs(2).plot();
 
 %% Freq Resp
+flow = 0.5;
+fhigh = 3.5;
+gainGoal = 100;
+
+Vpp_in = 0.020; %V
+%   freq(Hz),   vpp(V)
 data = [
     0.25,   0.2;
     0.5,    1.25;
@@ -55,8 +61,8 @@ data = [
     1.75,   1.45
     2,      1.4;
     2.25,   1.35;
-    2.5,    1.35,
-    2.75,   1.3,
+    2.5,    1.35;
+    2.75,   1.3;
     3,      1.25;
     3.25,   1.2;
     3.5,    1.15;
@@ -68,7 +74,24 @@ data = [
     5,      0.9;
     5.25,   0.875;
 ];
+data(:, 2) = data(:, 2)/0.020;
+
 plot(data(:, 1), data(:, 2));
+xline(flow);
+xline(fhigh);
+yline(gainGoal);
+text((flow + fhigh)/2, 30, "Selected Frequency Band", "HorizontalAlignment","center");
+text((flow + fhigh)/2, gainGoal, "Gain Goal", "HorizontalAlignment","center", "VerticalAlignment","bottom");
+ylim([0, 110]);
 xlabel("Frequency (Hz)");
-ylabel("Vpp (V)");
-title("Frequency Amplitude Response");
+ylabel("Gain (Vpp_{in}/Vpp_{out})");
+title("Frequency Gain Response");
+%% square wave ir led
+swir = logs(10);
+swir.plot();
+title("Square Wave IR LED Response");
+subtitle("Input signal 5Vpp + 2.5V offset, 2Hz")
+
+
+
+
