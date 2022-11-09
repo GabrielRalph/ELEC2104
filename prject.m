@@ -4,7 +4,7 @@ clc;
 logs = ELVISLogs.getAll("Project");
 %% req 2 IR
 clf;
-idxs = [4, 5, 6];
+idxs = [1, 2, 3];
 for i = 1:3
     subplot(3, 1, i);
 
@@ -19,7 +19,7 @@ for i = 1:3
     ELVISLogs.plotPoint(tmax, maxv, round(maxv, 2) + "V");
     ELVISLogs.plotPoint(tmin, minv, round(minv, 2) + "V");
     legend(["V_{in}", "V_{out}"]);
-    title(sprintf("IR LED Response %i", i));
+%     title(sprintf("IR LED Response %i", i));
 end
 
 %% req 2 RED
