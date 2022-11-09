@@ -214,7 +214,7 @@ classdef ELVISLogs
             sx = sigs(:, 1, :);
             sy = squeeze(sigs(:, 2, :));
             
-            if ~exist("isyaxis", "var")
+            if ~exist("isy", "var")
                 isy = false;
             else
                 temp = sx;
@@ -225,7 +225,7 @@ classdef ELVISLogs
             [x, isx] = unique(sx(:, 1));
             yitcps = interp1(x, sy(isx, :), xitcps);
             yitcps = reshape(yitcps, [], 1);
-            xitcps = reshape(repmat(xitcps, 1, ns), [], 1)
+            xitcps = reshape(repmat(xitcps, 1, ns), [], 1);
             nonn = isnan(yitcps);
             yitcps = yitcps(nonn);
             xitcps = xitcps(nonn);
@@ -285,6 +285,16 @@ classdef ELVISLogs
     end
         
     methods (Static)
+        function plotPoint(x, y, ltex)
+            if ~exist("ltex", "var") 
+                ltex = round(x, 3) + ", " + round(y, 3);
+            end
+            hold on;
+            scatter(x, y, 'filled');
+            hold on;
+            text(x, y, ltex);
+        end
+
         function dpoint = getTimeDataPointMS(sig, time0)
             time = datenum(sig.time, "dd/mm/yyyy HH:MM:SS");
             millis = str2double(sig.millis) * 1000;
