@@ -3,7 +3,7 @@ clc;
 
 logs = ELVISLogs.getAll("Project");
 %% req 2 IR
-% IR LED 1 - 3
+clf;
 idxs = [4, 5, 6];
 for i = 1:3
     subplot(3, 1, i);
@@ -18,11 +18,12 @@ for i = 1:3
     logs(idxs(i)).plot();
     ELVISLogs.plotPoint(tmax, maxv, round(maxv, 2) + "V");
     ELVISLogs.plotPoint(tmin, minv, round(minv, 2) + "V");
-    legend(["V_{sig}", "V_{out}"]);
+    legend(["V_{in}", "V_{out}"]);
     title(sprintf("IR LED Response %i", i));
 end
 
 %% req 2 RED
+clf;
 idxs = [7, 8, 9];
 for i = 1:3
     subplot(3, 1, i);
@@ -42,3 +43,32 @@ for i = 1:3
 end
 %%
 logs(3).plot();
+
+%% Freq Resp
+data = [
+    0.25,   0.2;
+    0.5,    1.25;
+    0.75,   1.35;
+    1,      1.4;
+    1.25,   1.45;
+    1.5,    1.45;
+    1.75,   1.45
+    2,      1.4;
+    2.25,   1.35;
+    2.5,    1.35,
+    2.75,   1.3,
+    3,      1.25;
+    3.25,   1.2;
+    3.5,    1.15;
+    3.75,   1.1;
+    4,      1;
+    4.25,   1;
+    4.5,    1;
+    4.75,   0.95;
+    5,      0.9;
+    5.25,   0.875;
+];
+plot(data(:, 1), data(:, 2));
+xlabel("Frequency (Hz)");
+ylabel("Vpp (V)");
+title("Frequency Amplitude Response");
