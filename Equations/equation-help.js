@@ -10,50 +10,180 @@ let JAXFUNCS = {
   "\\Delta": 0,
   "\\approx": 0,
   "\\partial": 0,
+  "\\ln": 0,
   "e": 0,
+  "x": 0,
+}
+let IGNORED_WORDS = {
+  "the": true,
+  "because": true,
+  "caused": true,
+  "then": true,
+  "there": true,
+  "that": true,
+  "and": true,
+  "equal": true,
+}
+
+class Equation {
+  constructor(json){
+    this.keywords = {};
+    for (let key in json) this[key] = json[key];
+  }
+
+  addKeyword(word) {
+    let {keywords} = this;
+    word = word.toLowerCase();
+    if (!(word in IGNORED_WORDS)) {
+      keywords[word] = true;
+    }
+  }
+
+  addPhraseKeywords(parse) {
+    parse = parse.replace(/<[^>]+>/g, "");
+    parse = parse.replace(/\$[^$]+\$/g, "")
+    parse = parse.replace(/[{}()]/g, "");
+    let words = parse.split(/\s*,?\s+/);
+    for (let word of words) {
+      if (word.length > 2) {
+        this.addKeyword(word);
+        while (word.length > 3) {
+          word = word.slice(0, word.length - 1);
+          this.addKeyword(word);
+        }
+      }
+    }
+  }
+  addVariableKeyword(variable){
+    let lower = variable.toLowerCase();
+    lower = lower.replace("\\", "");
+    let simple = lower.replace(/[_{}]/g, "");
+    if (simple != lower) {
+      this.addKeyword(simple);
+    }
+    this.addKeyword(lower);
+  }
+
+  set description(value) {
+    this._description = value;
+    this.addPhraseKeywords(value);
+  }
+
+  set name(value){
+    this._name = value;
+    this.addPhraseKeywords(value);
+  }
+
+  get name(){
+    return this._name;
+  }
+
+  get description(){return this._description;}
+
+  set equation(value){
+    let {keywords} = this;
+    let variables = {};
+    if (typeof value === "string") {
+      let str = value.replaceAll(/\\?\w+_{[^}]+}/g, (a) => {
+        variables[a] = true;
+        return " ";
+      });
+
+      let m2 = str.matchAll(/\\?\w*(_[0-9a-zA-Z])?/g);
+      for (let m of m2) {
+        variables[m[0]] = true;
+      }
+
+      for (let variable in variables) {
+        if (variable == "" || variable.match(/^\d+$/) || variable in JAXFUNCS){
+          delete variables[variable];
+        } else {
+          this.addVariableKeyword(variable);
+        }
+      }
+    }
+    this._variables = variables;
+    this._equation = value;
+  }
+
+  get equation() {return this._equation; }
+
+  get variables() {return this._variables; }
 }
 
 class Variables {
   constructor(){
-    this.variables = {};
+    this.eqs_by_var = {};
     this.equations = [];
   }
 
+  get variables(){
+    return [...Object.keys(this.eqs_by_var)];
+  }
+
   addEquation(eq) {
-    let variables = {};
-    this.equations.push(eq);
-    let eqi = this.equations.length - 1;
-
-    let str = eq.equation;
-    str = str.replaceAll(/\\?\w+_{[^}]+}/g, (a) => {
-      variables[a] = eq;
-      return "";
-    });
-
-    let m2 = str.matchAll(/\\?\w+(_[0-9a-zA-Z])?/g);
-    for (let m of m2) {
-      variables[m[0]] = eq;
-    }
-
-    for (let vname in variables) {
-      if (!vname.match(/^\d/) && !(vname in JAXFUNCS)) {
-        if (!(vname in this.variables)) {
-          this.variables[vname] = [];
+    try {
+      let equation = new Equation(eq);
+      let {eqs_by_var, equations} = this;
+      for (let vname in equation.variables) {
+        if (!(vname in eqs_by_var)) {
+          eqs_by_var[vname] = [];
         }
-
-        this.variables[vname].push(eqi);
+        eqs_by_var[vname].push(equation);
       }
+      equations.push(equation);
+    } catch (e) {
+      console.log(e);
+      console.log('failed to add equation');
     }
   }
 
-  getEquationSet(set) {
+  getEquations(variables) {
     let equations = [];
-    for (let i = 0; i < this.equations.length; i++) {
-      if (i in set) {
-        equations.push(this.equations[i]);
+    let i = 0;
+    for (let equation of this.equations) {
+      for (let variable of variables) {
+        if (variable in equation.variables){
+          equations.push(equation);
+          break;
+        }
       }
     }
     return equations;
+  }
+
+  searchEquations(search_phrase, equations = this.equations) {
+    let seqs = [];
+    if (search_phrase) {
+      let search_words = search_phrase.toLowerCase().split(/\s*,?\s+/g);
+      let eqmatch = {};
+      for (let {keywords, equation} of equations) {
+        eqmatch[equation] = 0;
+        for (let word of search_words) {
+          if (word in keywords) {
+              eqmatch[equation] += 1;
+          }
+        }
+      }
+      equations.sort((a, b) => eqmatch[a.equation] < eqmatch[b.equation] ? 1 : -1);
+      for (let eq of equations) {
+        if (eqmatch[eq.equation] > 0) {
+          seqs.push(eq);
+        }
+      }
+    }
+    return seqs;
+  }
+
+  getVariables(equations = this.equations) {
+    let allvariables = {};
+    for (let {variables} of equations) {
+      for (let vari in variables) {
+        allvariables[vari] = true;
+      }
+    }
+
+    return Object.keys(allvariables);
   }
 }
 
@@ -75,93 +205,193 @@ function typeset(el) {
 class EquationHelp extends SvgPlus {
   constructor(el){
     super(el)
-    this.variables = getVariables();
+    this.eq_dictionary = getVariables();
   }
 
   onconnect(){
-    this.elist = new SvgPlus(this.querySelector(".equations"));
-    this.vlist = new SvgPlus(this.querySelector(".variables"));
-    this.vtitle = new SvgPlus(this.querySelector(".variables-title"));
-    this.etitle = new SvgPlus(this.querySelector(".equations-title"));
-    let search = new SvgPlus(this.querySelector("input"));
+    this.tbox = this.createChild("div", {class: "tools"});
+    this.tbox.createChild("span", {content: "Search"});
+    this.search = this.tbox.createChild("input");
+    this.results = this.tbox.createChild("span", {style: {
+      "font-size": "0.6em",
+      "line-height": "1em",
+      "text-align": "center",
+      "white-space": "nowrap",
+    }});
+    this.etitle = this.createChild("div", {class: "equations-title", content: "Equations"});
+    this.vtitle = this.createChild("div", {class: "variables-title", content: "Variables"});
+    this.elist = this.createChild("div", {class: "equations list"});
+    this.vlist = this.createChild("div", {class: "variables list"});
+    this.info = this.createChild("div", {class: "info", hidden: true});
+    let {search} = this;
     search.oninput = () => {
-      this.renderVList(search.value);
+      this.search_phrase = search.value;
+      this.render_variable_list();
     }
-    this.search = search;
 
     this.vtitle.onclick = () => {
-      this.clearSelected();
+      this.render_variable_list();
     }
-    this.render();
+    this.render_variable_list();
   }
 
 
+  get filtered_variables(){
+    let {eq_dictionary, search_phrase} = this;
 
-  render(){
-    this.renderVList();
+    let equations = eq_dictionary.searchEquations(search_phrase);
+    if (equations.length < 1) equations = eq_dictionary.equations;
+
+    let variables = eq_dictionary.getVariables(equations);
+
+    console.log(variables);
+    return variables;
   }
 
-  clearSelected(){
-    this.renderVList();
-  }
+  get filtered_equations(){
+    let {get_selected_variables, eq_dictionary, search_phrase} = this;
+    let variables = null;
+    if (get_selected_variables instanceof Function)
+      variables = this.get_selected_variables();
+    let equations = eq_dictionary.getEquations(variables);
 
-  get selectedEquations() {
-    let {variables, vlist} = this;
-
-    let eqs = {};
-    for (let v of vlist.children) {
-      if (v.getAttribute("selected") != null) {
-        let equations = variables.variables[v.getAttribute("name")];
-        for (let eqi of equations) {
-          eqs[eqi] = true;
-        }
+    let seqs = eq_dictionary.searchEquations(search_phrase, equations);
+    if (seqs.length > 0) equations = seqs;
+    let n = seqs.length
+    if (n > 0) {
+      equations = seqs;
+      this.results.innerHTML = `${n} Results`
+    } else {
+      if (search_phrase) {
+        this.results.innerHTML = "No Results"
+      } else {
+        this.results.innerHTML = "";
       }
     }
-
-    let equations = variables.getEquationSet(eqs);
-    if (equations.length == 0) equations = variables.equations;
-
     return equations;
   }
 
-  renderVList(filter){
-    if (!filter) {
-      this.search.value = "";
-    }
 
-    let {variables, vlist} = this;
-
+  render_variable_list(){
+    let {vlist, filtered_variables} = this;
     vlist.innerHTML = "";
-    for (let vari in variables.variables) {
-      let filtered = vari.indexOf(filter) == -1
-      if (!filter || !filtered) {
-        let icon = vlist.createChild("div", {content: '$' + vari + '$', name: vari});
-        icon.onclick = () => {
-          icon.toggleAttribute("selected");
-          this.updateEList();
-        }
-        if (filter && !filtered) {
-          icon.toggleAttribute("selected");
-        }
+
+    let selected_variables = {};
+    for (let variable of filtered_variables) {
+      selected_variables[variable] = false;
+      let box = vlist.createChild("div");
+      let icon = box.createChild("div", {
+        content: '$' + variable + '$',
+        name: variable
+      });
+      box.onclick = () => {
+        let selected = !selected_variables[variable];
+        icon.toggleAttribute("selected", selected);
+        selected_variables[variable] = selected;
+
+        this.render_equation_list();
       }
     }
 
-    typeset(vlist);
-    this.updateEList();
-  }
+    this.get_selected_variables = () => {
+      let variables = [];
+      let selection = false;
+      for (let variable of filtered_variables) {
+        selection = selection || selected_variables[variable];
+      }
 
-  updateEList() {
-    let {selectedEquations, elist} = this;
+      if (selection) {
+        for (let variable of filtered_variables) {
+          if (selected_variables[variable]) {
+            variables.push(variable);
+          }
+        }
+      } else {
+        variables = [...filtered_variables];
+      }
 
-    elist.innerHTML = "";
-    for (let eq of selectedEquations) {
-      let icon = elist.createChild("div");
-      icon.createChild("P", {content: "$" + eq.equation + "$"});
+      return variables;
     }
 
-    typeset(elist);
+    typeset(vlist);
+    this.render_equation_list();
   }
 
+  render_equation_list(){
+    let {elist, filtered_equations, shown_info} = this;
+    elist.innerHTML = "";
+
+    let cont_select = false;
+    for (let eq of filtered_equations) {
+      let box = elist.createChild("div");
+      let icon = box.createChild("div", {
+        content: "$" + eq.equation + "$"
+      });
+      if (shown_info && this.shown_info.equation.equation == eq.equation) {
+        cont_select = true;
+        this.shown_info = icon;
+        icon.toggleAttribute("selected", true);
+      }
+      icon.equation = eq;
+      box.onclick = () => {
+        this.render_info(icon);
+      }
+    }
+    typeset(elist);
+    if (!cont_select) this.render_info(null);
+  }
+
+
+
+  clearSelected(){
+    this.render_variable_list();
+  }
+
+
+  render_info(icon) {
+    let {info, shown_info} = this;
+    info.innerHTML = "";
+
+    let eq = null;
+    if (icon) {
+      eq = icon.equation;
+    }
+    if (shown_info) {
+      shown_info.toggleAttribute("selected", false);
+    }
+    this.shown_info = icon;
+
+    if (icon) {
+      icon.toggleAttribute("selected", true);
+    }
+    info.toggleAttribute("hidden", false);
+    if (eq != null) {
+      let template = "";
+      let {description, name, image, equation} = eq;
+      if (!description) description = "";
+      if (!name) name = `$${equation}$`;
+      else description = `<div style = "font-size: 1.5em; margin: 0.4em 0;">$${equation}$</div>` + description;
+      if (image) {
+        template = `
+        <div style = "font-size: 2.5em; text-align: center;">${name}</div>
+        <div style = "display: flex; gap: 1em;">
+          <div>
+            <img src = "${image}" style = "height: 17em; max-width: 100%;"/>
+          </div>
+          <div style = "width: 50%;"">
+            ${description}
+          </div>
+       </div>`
+      } else {
+        template = `<div style = "font-size: 2.5em;">${name}</div>
+        <p> ${description} </p>`;
+      }
+      info.innerHTML = template;
+      typeset(info);
+    } else {
+      info.toggleAttribute("hidden", true);
+    }
+  }
 }
 
 SvgPlus.defineHTMLElement(EquationHelp);

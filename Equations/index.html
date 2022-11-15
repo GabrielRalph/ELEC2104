@@ -5,7 +5,6 @@
     <title>Equations</title>
 
     <script>
-
       MathJax = {
         loader: {load: ['[tex]/color']},
         tex: {
@@ -33,24 +32,14 @@
   </head>
   <body>
     <equation-help>
-      <div class = "tools">
-        <span>Search</span> <input />
-      </div>
-      <h1 class = "equations-title">Equations</h1>
-      <h1 class = "variables-title">Variables</h1>
-      <div class = "equations list">
 
-      </div>
-      <div class = "variables list">
-
-      </div>
     </equation-help>
   </body>
   <style>
 
     body {
       overflow: hidden;
-      font-size: calc(0.85vmax + 0.85vmin);
+      margin: 0;
     }
     h1 {
       text-align: center;
@@ -58,11 +47,14 @@
       line-height: 2em;
     }
     equation-help {
-      font-family: monospace;
-      margin: 0.5em;
+      --fs: calc(2vmin);
+      --title-height: calc(var(--fs) * 3);
+      --search-height: calc(var(--fs) * 3);
+      font-size: var(--fs);
+      font-family: "Times new roman", monospace;
       display: grid;
       grid-template-columns: 5fr 1fr;
-      grid-template-rows: 2em 4em;
+      grid-template-rows: var(--search-height) var(--title-height);
       position: absolute;
       top: 0;
       left: 0;
@@ -77,9 +69,12 @@
       grid-row-end: 1;
       grid-column-end: 3;
       gap: 20px;
-      font-size: 1.5em;
+      font-size: calc((var(--search-height) - 0.5em) * 0.65);
+      line-height: calc(var(--search-height) - 0.5em);
       position: relative;
       align-items: center;
+      border-bottom: 2px solid black;
+      padding: 0.25em;
     }
     .tools input {
       width: 100%;
@@ -88,10 +83,16 @@
       padding: 0;
       margin: 0;
       border: 0;
-      border-bottom: 2px solid black;
       outline: none;
     }
-
+    .equations-title, .equations {
+      border-right: 2px solid black;
+    }
+    .equations-title, .variables-title {
+      text-align: center;
+      line-height: var(--title-height);
+      font-size: 1.5em;
+    }
     .equations-title {
       display: grid;
       grid-row-start: 2;
@@ -114,11 +115,32 @@
       grid-column-end: 1;
     }
 
+    .equations > div > div {
+      margin: 1.25em 0;
+      display: flex;
+      gap: 10px;
+    }
+
     .variables{
       grid-row-start: 3;
       grid-column-start: 2;
       grid-row-end: 3;
       grid-column-end: 2;
+    }
+    .variables > div > div {
+      margin: 0.625em 0;
+    }
+
+    .info {
+      grid-row-start: 4;
+      grid-column-start: 1;
+      grid-row-end: 4;
+      grid-column-end: 3;
+      padding: 0.5em;
+      border-top: 2px solid black;
+    }
+    .info > div:first-of-type {
+      margin-bottom: 0.5em;
     }
 
     .list {
@@ -130,15 +152,21 @@
     .list > div {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin: 0.3em 0;
     }
-    .list > div[selected]::after {
+
+
+    [selected] {
+      position: relative;
+    }
+    [selected]::after {
+      position: absolute;
+      top: 0;
+      right: -10px;
       width: 5px;
       height: 5px;
       border-radius: 5px;
       background: black;
-      content: " "
+      content: " ";
     }
 
   </style>

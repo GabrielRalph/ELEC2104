@@ -162,4 +162,14 @@ text(red_highs(:, 1), red_highs(:, 2), red_highs(:, 1) + "ms, " + red_highs(:, 2
 scatter(red_highs(:, 1), red_highs(:, 2), 10, "red", "filled");
 scatter(red_lows(:, 1), red_lows(:, 2), 10, "red", "filled");
 
-
+%%
+R3 = 1e3;
+R2 = 100e3;
+R1 = 20e3;
+C1 = 470e-9;
+C2 = 17e-6;
+GOP = @(s) 1 + (1./(1/R2 + C1 * s * 1i))/R3;
+GHP = @(s) R1 ./ (R1 + 1./(C2 * 1i * s));
+f = linspace(0, 10, 100);
+plot(f, abs(GOP(f) .* GHP(f)));
+hold on;
