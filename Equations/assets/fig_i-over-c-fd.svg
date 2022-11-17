@@ -55,7 +55,7 @@
 	</g>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 6.9463 183.593)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:34.0157px;">v(ω)</text>
+	<text transform="matrix(1 0 0 1 6.9462 183.593)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:34.0157px;">v(ω)</text>
 </g>
 <g>
 	<line style="fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;" x1="22.6" y1="115.7" x2="22.6" y2="124.2"/>
@@ -69,8 +69,8 @@
 			<rect x="32.2" y="114.3" style="fill:#2189F9;" width="11.2" height="11.2"/>
 		</g>
 		<g>
-			<path style="fill:#2189F9;" d="M124.4,124.2c2.4,0,4.3-1.9,4.3-4.3s-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3
-				S122.1,124.2,124.4,124.2z"/>
+			<path style="fill:#2189F9;" d="M124.4,124.2c2.4,0,4.3-1.9,4.3-4.3c0-2.4-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3
+				C120.2,122.3,122.1,124.2,124.4,124.2z"/>
 		</g>
 	</g>
 </g>
@@ -81,8 +81,8 @@
 			<rect x="32.2" y="223.8" style="fill:#2189F9;" width="11.2" height="11.2"/>
 		</g>
 		<g>
-			<path style="fill:#2189F9;" d="M124.4,233.7c2.4,0,4.3-1.9,4.3-4.3c0-2.4-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3
-				C120.2,231.8,122.1,233.7,124.4,233.7z"/>
+			<path style="fill:#2189F9;" d="M124.4,233.7c2.4,0,4.3-1.9,4.3-4.3s-1.9-4.3-4.3-4.3c-2.4,0-4.3,1.9-4.3,4.3
+				S122.1,233.7,124.4,233.7z"/>
 		</g>
 	</g>
 </g>

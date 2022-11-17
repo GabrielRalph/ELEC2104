@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="163.4px" height="252.3px" viewBox="0 0 163.4 252.3" style="enable-background:new 0 0 163.4 252.3;" xml:space="preserve"
+	>
+<g>
+	<g>
+		<g>
+			<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-miterlimit:10;" x1="31.2" y1="22" x2="31.2" y2="240.1"/>
+			<g>
+				<path d="M27,22c0-2.4,1.9-4.3,4.3-4.3s4.3,1.9,4.3,4.3c0,2.4-1.9,4.3-4.3,4.3S27,24.4,27,22z"/>
+			</g>
+			<g>
+				<path d="M27,240.1c0,2.4,1.9,4.3,4.3,4.3s4.3-1.9,4.3-4.3s-1.9-4.3-4.3-4.3S27,237.8,27,240.1z"/>
+			</g>
+		</g>
+	</g>
+	<polyline style="fill-rule:evenodd;clip-rule:evenodd;" points="32.9,160.7 44,133.5 18.5,133.5 29.6,160.7 	"/>
+	
+		<rect x="18.5" y="159.3" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 62.4323 321.4688)" style="fill-rule:evenodd;clip-rule:evenodd;" width="25.5" height="2.8"/>
+</g>
+<text transform="matrix(1 0 0 1 103.7302 162.1521)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">V</text>
+<text transform="matrix(0.583 0 0 0.583 127.9714 175.3669)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">D</text>
+<g>
+	<line style="fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;" x1="132.3" y1="104.4" x2="145.7" y2="104.4"/>
+	<line style="fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;" x1="139" y1="111.1" x2="139" y2="97.7"/>
+</g>
+<g>
+	<g>
+		<line style="fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;" x1="117.8" y1="104.4" x2="31.2" y2="104.4"/>
+		<g>
+			<rect x="112.2" y="98.8" style="fill:#2189F9;" width="11.2" height="11.2"/>
+		</g>
+		<g>
+			<circle style="fill:#2189F9;" cx="31.2" cy="104.4" r="4.3"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line style="fill:none;stroke:#2189F9;stroke-width:2.8346;stroke-miterlimit:10;" x1="117.8" y1="193.9" x2="31.2" y2="193.9"/>
+		<g>
+			<rect x="112.2" y="188.3" style="fill:#2189F9;" width="11.2" height="11.2"/>
+		</g>
+		<g>
+			<circle style="fill:#2189F9;" cx="31.2" cy="193.9" r="4.3"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 47.4165 70.6083)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">I</text>
+<text transform="matrix(0.583 0 0 0.583 60.6323 83.8231)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">D</text>
+<g>
+	<g>
+		<line style="fill:none;stroke:#F15A24;stroke-width:2.8346;stroke-miterlimit:10;" x1="31.2" y1="34.9" x2="31.2" y2="66.5"/>
+		<g>
+			<polygon style="fill:#F15A24;" points="21.8,59.3 31.2,63.3 40.7,59.3 31.2,81.7 			"/>
+		</g>
+	</g>
+</g>
+</svg>

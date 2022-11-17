@@ -41,6 +41,18 @@ classdef quiz
             maxV = 10^7; % cm / s
             ND = 10^17; % cm^-3
             obj.q3(maxV, ND);
+
+            %T2-Q3
+            obj.name = "T2-Q3";
+            NA = 5e17;
+            ND = 2e17;
+            obj.t2q3(NA, ND);
+
+            %T2-Q4
+            obj.name = "T2-Q4";
+            NA = 5.5e16;
+            ND = 4.5e16;
+            obj.t2q3(NA, ND);
         end
 
 
@@ -64,6 +76,7 @@ classdef quiz
         end
 
         function q3(obj, maxV, ND)
+            
 
             %    cm/s     cm^2/Vs
             E = -maxV / obj.mu_n; % V/cm
@@ -73,6 +86,13 @@ classdef quiz
             Jdrift = obj.q * ( n  * obj.mu_n +  p   * obj.mu_p) * E; % A / (cm^2)
             
             fprintf("%s: Jdrift = %s\n", obj.name, funit(abs(Jdrift), "A/cm^2", 0));
+        end
+    
+        function t2q3(obj, NA, ND) 
+            p = (NA - ND + sqrt((NA - ND)^2 + 4 * obj.ni^2))/2;
+            n = obj.ni^2 / p;
+
+            fprintf("%s: p = %.2g, n = %.2g atoms/cm^3\n", obj.name, p, n);
         end
     end
 end

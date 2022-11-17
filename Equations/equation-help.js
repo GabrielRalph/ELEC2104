@@ -1,4 +1,4 @@
-import {Equations} from "./equations.js"
+import {Equations, Constants} from "./equations.js"
 import {SvgPlus} from "../SvgPlus/4.js"
 
 let JAXFUNCS = {
@@ -11,8 +11,17 @@ let JAXFUNCS = {
   "\\approx": 0,
   "\\partial": 0,
   "\\ln": 0,
+  "\\begin": 0,
+  "\\end": 0,
+  "\\text": 0,
   "e": 0,
   "x": 0,
+  "$": true,
+  "$$": true,
+  "for": true,
+  "array": true,
+  "\\": true,
+  "\\quad": true
 }
 let IGNORED_WORDS = {
   "the": true,
@@ -197,10 +206,54 @@ function getVariables(equations = Equations) {
 }
 
 function typeset(el) {
-  if (MathJax) {
+  if (MathJax && MathJax.typeset instanceof Function) {
     MathJax.typeset([el]);
   }
 }
+
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+  textArea.style.opacity = "0";
+
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  let success = false;
+  try {
+    success = document.execCommand('copy');
+    var msg = success ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+  return success;
+}
+async function copyTextToClipboard(text) {
+  let success = false;
+  if (!navigator.clipboard) {
+    success = fallbackCopyTextToClipboard(text);
+  } else {
+    try {
+      await navigator.clipboard.writeText(text);
+      success = true;
+    } catch(e) {
+      console.log('copy failed');
+    }
+  }
+
+  return success
+}
+
 
 class EquationHelp extends SvgPlus {
   constructor(el){
@@ -220,8 +273,10 @@ class EquationHelp extends SvgPlus {
     }});
     this.etitle = this.createChild("div", {class: "equations-title", content: "Equations"});
     this.vtitle = this.createChild("div", {class: "variables-title", content: "Variables"});
+    this.ctitle = this.createChild("div", {class: "constants-title", content: "Constants"});
     this.elist = this.createChild("div", {class: "equations list"});
     this.vlist = this.createChild("div", {class: "variables list"});
+    this.clist = this.createChild("div", {class: "constants list"});
     this.info = this.createChild("div", {class: "info", hidden: true});
     let {search} = this;
     search.oninput = () => {
@@ -233,6 +288,7 @@ class EquationHelp extends SvgPlus {
       this.render_variable_list();
     }
     this.render_variable_list();
+    this.render_constants_list();
   }
 
 
@@ -244,7 +300,6 @@ class EquationHelp extends SvgPlus {
 
     let variables = eq_dictionary.getVariables(equations);
 
-    console.log(variables);
     return variables;
   }
 
@@ -341,7 +396,34 @@ class EquationHelp extends SvgPlus {
     if (!cont_select) this.render_info(null);
   }
 
+  render_constants_list() {
+    let {clist} = this;
+    clist.innerHTML = "";
+    for (let constant of Constants) {
+      let icon = clist.createChild("div");
+      let {value, unit, symbol} = constant;
 
+      let unitstr = unit.replace(/(?:\\text)?{([^}]+)}/g,"$1");
+      unitstr = unitstr.replace(/\s?\\cdot\s?/g, "·")
+      let str = (value + "").replace(/[eE](-?\d+)/g, "\\times 10^{$1}");
+      // console.log(str);
+        // let log10 = Math.round(Math.log(constant.value) / Math.log(10));
+      // let pnum = Math.pow(10, log10);
+      // let num = (constant.value / pnum);
+      // if (num < 1) {
+      //   num *= 10;
+      //   log10 -=1;
+      // }
+      // let value = `${num} $\\times 10^{${log10}}$ $${constant.unit}$`
+      let sym = icon.createChild("div", {content: `$${symbol} = ${str} \\text{ } ${unit}$`});
+      icon.onclick = async () => {
+        if (await copyTextToClipboard(`${value}; %\t${unitstr}`)) {
+          console.log('coppied', value);
+        }
+      }
+    }
+    typeset(clist)
+  }
 
   clearSelected(){
     this.render_variable_list();

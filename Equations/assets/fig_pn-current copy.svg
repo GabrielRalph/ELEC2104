@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="522.3px" height="559.5px" viewBox="0 0 522.3 559.5" style="enable-background:new 0 0 522.3 559.5;" xml:space="preserve"
+	>
+<pattern  x="-2239.3" y="-890.2" width="12" height="12" patternUnits="userSpaceOnUse" id="New_Pattern" viewBox="0.8 -12.8 12 12" style="overflow:visible;">
+	<g>
+		<rect x="0.8" y="-12.8" style="fill:none;" width="12" height="12"/>
+		<circle style="fill:#86A040;" cx="9.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="3.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="12.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="6.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="0.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="9.8" cy="-12.8" r="0.8"/>
+		<circle style="fill:#86A040;" cx="3.8" cy="-12.8" r="0.8"/>
+	</g>
+</pattern>
+<pattern  x="-2239.3" y="-890.2" width="8" height="8" patternUnits="userSpaceOnUse" id="New_Pattern_2" viewBox="0.8 -8.8 8 8" style="overflow:visible;">
+	<g>
+		<rect x="0.8" y="-8.8" style="fill:none;" width="8" height="8"/>
+		<circle style="fill:#A34141;" cx="6.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="2.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="8.8" cy="-4.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="4.8" cy="-4.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="0.8" cy="-4.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="6.8" cy="-8.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="2.8" cy="-8.8" r="0.8"/>
+	</g>
+</pattern>
+<pattern  x="-2239.3" y="-890.2" width="12" height="12" patternUnits="userSpaceOnUse" id="New_Pattern_Swatch_1" viewBox="0.8 -12.8 12 12" style="overflow:visible;">
+	<g>
+		<rect x="0.8" y="-12.8" style="fill:none;" width="12" height="12"/>
+		<circle style="fill:#A34141;" cx="9.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="3.8" cy="-0.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="12.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="6.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="0.8" cy="-6.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="9.8" cy="-12.8" r="0.8"/>
+		<circle style="fill:#A34141;" cx="3.8" cy="-12.8" r="0.8"/>
+	</g>
+</pattern>
+<pattern  id="SVGID_1_" xlink:href="#New_Pattern_Swatch_1" patternTransform="matrix(1 0 0 1 3.6586 -3.4034)">
+</pattern>
+<rect x="109.1" y="44.6" style="fill:url(#SVGID_1_);stroke:#A34141;stroke-miterlimit:10;" width="121.5" height="114.1"/>
+<pattern  id="SVGID_00000016785804374212906680000000019295997858122116_" xlink:href="#New_Pattern_2" patternTransform="matrix(1 0 0 1 7.6586 -3.4034)">
+</pattern>
+<rect x="299.9" y="44.6" style="fill:url(#SVGID_00000016785804374212906680000000019295997858122116_);stroke:#A34141;stroke-miterlimit:10;" width="121.5" height="114.1"/>
+<polyline style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+	348,220 265.3,220 265.3,158.7 "/>
+<polyline style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+	421.4,101.7 475.1,101.7 475.1,220 392.4,220 "/>
+<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="348" y1="201.9" x2="348" y2="238"/>
+<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="392.4" y1="210.2" x2="392.4" y2="229.7"/>
+<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="243" y1="273.3" x2="243" y2="309.4"/>
+<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="287.5" y1="281.6" x2="287.5" y2="301.1"/>
+<pattern  id="SVGID_00000078737541839262156350000007766940265035164341_" xlink:href="#New_Pattern" patternTransform="matrix(1 0 0 1 3.6586 -3.4034)">
+</pattern>
+<rect x="230.6" y="44.6" style="fill:url(#SVGID_00000078737541839262156350000007766940265035164341_);stroke:#86A040;stroke-miterlimit:10;" width="69.3" height="114.1"/>
+<text transform="matrix(0.583 0 0 0.583 237.6461 28.574)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">p-type</text>
+<text transform="matrix(0.583 0 0 0.583 138.1335 28.5743)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">n-type</text>
+<text transform="matrix(0.583 0 0 0.583 331.7616 28.574)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">n-type</text>
+<text transform="matrix(0.583 0 0 0.583 13.9534 87.261)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">Collector</text>
+<text transform="matrix(0.583 0 0 0.583 272.6457 182.6863)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">Base</text>
+<text transform="matrix(0.583 0 0 0.583 431.3163 89.3223)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">Emitter</text>
+<text transform="matrix(1 0 0 1 355.9328 242.2971)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">V</text>
+<text transform="matrix(0.583 0 0 0.583 380.174 255.512)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">BE</text>
+<text transform="matrix(1 0 0 1 250.2868 314.6003)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">V</text>
+<text transform="matrix(0.583 0 0 0.583 274.528 327.8151)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:39.685px;">CE</text>
+<polyline style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+	243,291.3 55.4,291.3 55.4,101.7 109.1,101.7 "/>
+<polyline style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+	475.1,220 475.1,291.3 287.5,291.3 "/>
+<g>
+	<g>
+		<g>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:5.6693;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;" x1="124.1" y1="431.2" x2="153.6" y2="431.2"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="129.8" y1="431.2" x2="115.9" y2="460.7"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="155.9" y1="448.3" x2="161.7" y2="460.7"/>
+			<g>
+				<g>
+					
+						<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;" x1="147.8" y1="431.2" x2="155.9" y2="448.3"/>
+					<g>
+						<polygon points="148.6,449.4 160.2,457.5 161.4,443.4 						"/>
+					</g>
+				</g>
+			</g>
+			
+				<circle style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" cx="138.8" cy="445.5" r="28.1"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="138.8" y1="431.2" x2="138.8" y2="377.7"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="115.9" y1="460.7" x2="71" y2="460.7"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="161.7" y1="460.7" x2="206.6" y2="460.7"/>
+		</g>
+		<text transform="matrix(1 0 0 1 40.0471 470.0244)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">C</text>
+		<text transform="matrix(1 0 0 1 214.472 471.9902)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">E</text>
+		<text transform="matrix(1 0 0 1 127.4417 368.1943)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">B</text>
+	</g>
+	<g>
+		<g>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:5.6693;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;" x1="371.9" y1="431.2" x2="401.4" y2="431.2"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="377.7" y1="431.2" x2="363.8" y2="460.7"/>
+			<g>
+				<g>
+					
+						<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;" x1="403.7" y1="448.3" x2="409.5" y2="460.7"/>
+					<g>
+						<polygon points="398.2,453.2 399.4,439.1 411,447.2 						"/>
+					</g>
+				</g>
+			</g>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="395.7" y1="431.2" x2="403.7" y2="448.3"/>
+			
+				<circle style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" cx="386.7" cy="445.5" r="28.1"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="386.7" y1="431.2" x2="386.7" y2="377.7"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="363.8" y1="460.7" x2="318.9" y2="460.7"/>
+			
+				<line style="fill:none;stroke:#000000;stroke-width:2.835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="409.5" y1="460.7" x2="454.5" y2="460.7"/>
+		</g>
+		<text transform="matrix(1 0 0 1 287.9182 470.0244)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">C</text>
+		<text transform="matrix(1 0 0 1 462.343 471.9902)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">E</text>
+		<text transform="matrix(1 0 0 1 375.3128 368.1943)" style="font-family:'TimesNewRomanPS-ItalicMT'; font-size:31.5025px;">B</text>
+	</g>
+	<text transform="matrix(1 0 0 1 97.7843 524.9426)" style="font-family:'TimesNewRomanPSMT'; font-size:39.685px;">NPN</text>
+	<text transform="matrix(1 0 0 1 348.6457 524.9426)" style="font-family:'TimesNewRomanPSMT'; font-size:39.685px;">PNP</text>
+</g>
+</svg>

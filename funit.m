@@ -4,15 +4,18 @@ function str = funit(value, qty, dp)
     end
     dp = sprintf("%%.%.0ff", dp);
 
-    num = value;
+    dir = 1 - 2 * (value < 0);
+    num = abs(value);
     unum = 0;
-    while (num > 1000) 
-        num = num / 1000;
-        unum = unum + 1;
-    end
-    while (num < 1)
-        num = num * 1000;
-        unum = unum - 1;
+    if num > 1e-20
+        while (num > 100) 
+            num = num / 1000;
+            unum = unum + 1;
+        end
+        while (num < 0.1)
+            num = num * 1000;
+            unum = unum - 1;
+        end
     end
     
     unitsa = ['k', 'M', 'G', 'T'];
@@ -25,5 +28,5 @@ function str = funit(value, qty, dp)
        unum = '';
     end
     
-    str = sprintf("%s (%c%s)", num2str(num, dp), unum, qty);
+    str = sprintf("%s %c%s", num2str(num * dir, dp), unum, qty);
 end

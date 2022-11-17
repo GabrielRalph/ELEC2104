@@ -53,7 +53,7 @@
       font-size: var(--fs);
       font-family: "Times new roman", monospace;
       display: grid;
-      grid-template-columns: 5fr 1fr;
+      grid-template-columns: 3fr 5fr 1.5fr;
       grid-template-rows: var(--search-height) var(--title-height);
       position: absolute;
       top: 0;
@@ -67,7 +67,7 @@
       grid-row-start: 1;
       grid-column-start: 1;
       grid-row-end: 1;
-      grid-column-end: 3;
+      grid-column-end: 4;
       gap: 20px;
       font-size: calc((var(--search-height) - 0.5em) * 0.65);
       line-height: calc(var(--search-height) - 0.5em);
@@ -85,34 +85,58 @@
       border: 0;
       outline: none;
     }
-    .equations-title, .equations {
+
+    .equations-title, .equations, .constants-title, .constants {
       border-right: 2px solid black;
     }
-    .equations-title, .variables-title {
+    .equations-title, .variables-title, .constants-title {
       text-align: center;
       line-height: var(--title-height);
       font-size: 1.5em;
     }
-    .equations-title {
+    .constants-title {
       display: grid;
       grid-row-start: 2;
       grid-column-start: 1;
       grid-row-end: 2;
       grid-column-end: 1;
     }
-    .variables-title {
+    .equations-title {
       display: grid;
       grid-row-start: 2;
       grid-column-start: 2;
       grid-row-end: 2;
       grid-column-end: 2;
     }
+    .variables-title {
+      display: grid;
+      grid-row-start: 2;
+      grid-column-start: 3;
+      grid-row-end: 2;
+      grid-column-end: 3;
+    }
 
-    .equations {
+
+
+    .constants {
       grid-row-start: 3;
       grid-column-start: 1;
       grid-row-end: 3;
       grid-column-end: 1;
+    }
+
+    .equations {
+      grid-row-start: 3;
+      grid-column-start: 2;
+      grid-row-end: 3;
+      grid-column-end: 2;
+    }
+
+    .variables{
+      grid-row-start: 3;
+      grid-column-start: 3;
+      grid-row-end: 3;
+      grid-column-end: 3;
     }
 
     .equations > div > div {
@@ -121,13 +145,7 @@
       gap: 10px;
     }
 
-    .variables{
-      grid-row-start: 3;
-      grid-column-start: 2;
-      grid-row-end: 3;
-      grid-column-end: 2;
-    }
-    .variables > div > div {
+    .variables > div > div, .constants > div > div {
       margin: 0.625em 0;
     }
 
@@ -135,7 +153,7 @@
       grid-row-start: 4;
       grid-column-start: 1;
       grid-row-end: 4;
-      grid-column-end: 3;
+      grid-column-end: 4;
       padding: 0.5em;
       border-top: 2px solid black;
     }
