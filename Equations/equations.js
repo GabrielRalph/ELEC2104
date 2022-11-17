@@ -70,18 +70,21 @@ export const Equations = [
  {
    equation: "n_i^2 = B T^3 e^{-\\cfrac{E_g}{k_B T}}",
    unit: "cm^{-6}",
+   paste_text: "n_i = @(B, T, E_g) sqrt(B * T^3 * exp(E_g / (8.61738e-5 * T))); %\tcm^-3",
    name: "Intrinsic Carrier Density",
    image: "./assets/fig_intrinsic.svg",
    description: "Relationship of the intrinsic carrier density $n_i$ with temperature $T$ ($\\text{K}$ kelvin), semiconductor band gap energy $E_g$ ($\\text{eV}$ electron volts) and the material dependant paramater $B$. Where $B = 1.08 \\times 10^{31}\\text{K}^{-3}\\cdot \\text{cm}^{-6}$ for silicon and the Boltzmann's constant $k_B = 8.62 \\times 10^{-5} \\text{eV/K}$"
  },
  {
    equation: "n = \\cfrac{(N_D - N_A) + \\sqrt{(N_D - N_A)^2 + 4 n_i^2}}{2}",
+   paste_text: "n = @(N_D, N_A, ni) (N_D - N_A + sqrt((N_D - NA)^2 + 4 * ni^2)) / 2; %\tcm^-3",
    description: "For n-type semiconductor",
    image: "./assets/fig_n-type.svg",
    name: "Electron Density"
  },
  {
    equation: "p = \\cfrac{(N_A - N_D) + \\sqrt{(N_A - N_D)^2 + 4 n_i^2}}{2}",
+   paste_text: "p = @(N_A, N_D, ni) (N_A - N_D + sqrt((N_A - ND)^2 + 4 * ni^2)) / 2; %\tcm^-3",
    name: "Hole Density",
    image: "./assets/fig_p-type.svg",
    description: "For p-type semiconductor"

@@ -1,6 +1,6 @@
 import {Equations, Constants} from "./equations.js"
 import {SvgPlus} from "../SvgPlus/4.js"
-
+const pasteIcon = `<svg xmlns="http://www.w3.org/2000/svg" height = "1.2em" viewBox="0 0 42.41 57.08"><defs><style>.cls-1{fill:#fff;}.cls-1,.cls-2{stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.83px;}.cls-2{fill:none;}</style></defs><rect class="cls-2" x="6.23" y="20.9" width="40.73" height="28.8" rx="5.11" ry="5.11" transform="translate(-8.7 61.89) rotate(-90)"/><path class="cls-2" d="M12.19,47.25H7.17c-3.18,0-5.76-2.58-5.76-5.76V7.17C1.42,3.99,3.99,1.42,7.17,1.42H28.07c3.18,0,5.76,2.58,5.76,5.76v7.76"/><path class="cls-1" d="M28.2,1.42V5.73c0,2.07-1.68,3.76-3.76,3.76H10.8c-2.07,0-3.76-1.68-3.76-3.76V1.42H28.2Z"/><line class="cls-2" x1="17.62" y1="19.95" x2="35.67" y2="19.95"/><line class="cls-2" x1="17.62" y1="24.33" x2="35.67" y2="24.33"/><line class="cls-2" x1="17.62" y1="28.72" x2="35.67" y2="28.72"/></svg>`
 let JAXFUNCS = {
   "\\cfrac": 0,
   "\\frac": 0,
@@ -261,7 +261,9 @@ class EquationHelp extends SvgPlus {
     this.eq_dictionary = getVariables();
   }
 
+
   onconnect(){
+    this.style.position = "relative";
     this.tbox = this.createChild("div", {class: "tools"});
     this.tbox.createChild("span", {content: "Search"});
     this.search = this.tbox.createChild("input");
@@ -278,6 +280,9 @@ class EquationHelp extends SvgPlus {
     this.vlist = this.createChild("div", {class: "variables list"});
     this.clist = this.createChild("div", {class: "constants list"});
     this.info = this.createChild("div", {class: "info", hidden: true});
+    this.pasted = this.createChild("div", {class: "pasted"});
+    this.pasted.innerHTML += pasteIcon;
+    this.pasttext = this.pasted.createChild("pre");
     let {search} = this;
     search.oninput = () => {
       this.search_phrase = search.value;
@@ -389,6 +394,9 @@ class EquationHelp extends SvgPlus {
       }
       icon.equation = eq;
       box.onclick = () => {
+        if (eq.paste_text) {
+          this.paste_text(eq.paste_text);
+        }
         this.render_info(icon);
       }
     }
@@ -406,20 +414,10 @@ class EquationHelp extends SvgPlus {
       let unitstr = unit.replace(/(?:\\text)?{([^}]+)}/g,"$1");
       unitstr = unitstr.replace(/\s?\\cdot\s?/g, "·")
       let str = (value + "").replace(/[eE](-?\d+)/g, "\\times 10^{$1}");
-      // console.log(str);
-        // let log10 = Math.round(Math.log(constant.value) / Math.log(10));
-      // let pnum = Math.pow(10, log10);
-      // let num = (constant.value / pnum);
-      // if (num < 1) {
-      //   num *= 10;
-      //   log10 -=1;
-      // }
-      // let value = `${num} $\\times 10^{${log10}}$ $${constant.unit}$`
+
       let sym = icon.createChild("div", {content: `$${symbol} = ${str} \\text{ } ${unit}$`});
       icon.onclick = async () => {
-        if (await copyTextToClipboard(`${value}; %\t${unitstr}`)) {
-          console.log('coppied', value);
-        }
+        this.paste_text(`${value}; %\t${unitstr}`)
       }
     }
     typeset(clist)
@@ -427,6 +425,18 @@ class EquationHelp extends SvgPlus {
 
   clearSelected(){
     this.render_variable_list();
+  }
+
+  async paste_text(text){
+    if (await copyTextToClipboard(text)) {
+      this.pasttext.innerHTML = text;
+      await this.waveTransition((a) => {
+        this.pasted.style.opacity = a;
+      }, 250, true);
+      await this.waveTransition((a) => {
+        this.pasted.style.opacity = a;
+      }, 2000, false);
+    }
   }
 
 
